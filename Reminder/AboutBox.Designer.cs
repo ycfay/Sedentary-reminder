@@ -69,10 +69,10 @@
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Location = new System.Drawing.Point(12, 97);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(269, 12);
+            this.linkLabel1.Size = new System.Drawing.Size(263, 12);
             this.linkLabel1.TabIndex = 3;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "https://github.com/wjbgis/Sedentary-reminder";
+            this.linkLabel1.Text = "https://github.com/ycfay/Sedentary-reminder";
             this.linkLabel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.linkLabel1_MouseClick);
             // 
             // AboutBox
