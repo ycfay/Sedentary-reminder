@@ -21,3 +21,15 @@ E:\Demo\Sedentary-reminder\Reminder\obj\Debug\Reminder.RestFrm.resources
 E:\Demo\Sedentary-reminder\Reminder\obj\Debug\Sedentary Reminder.csproj.GenerateResource.cache
 E:\Demo\Sedentary-reminder\Reminder\obj\Debug\Reminder.exe
 E:\Demo\Sedentary-reminder\Reminder\obj\Debug\Reminder.pdb
+F:\t_code\co\dm23\Sedentary-reminder\Reminder\bin\Debug\Reminder.exe
+F:\t_code\co\dm23\Sedentary-reminder\Reminder\bin\Debug\Reminder.pdb
+F:\t_code\co\dm23\Sedentary-reminder\Reminder\obj\Debug\Sedentary Reminder.csproj.AssemblyReference.cache
+F:\t_code\co\dm23\Sedentary-reminder\Reminder\obj\Debug\Reminder.AboutBox.resources
+F:\t_code\co\dm23\Sedentary-reminder\Reminder\obj\Debug\Reminder.MainFrm.resources
+F:\t_code\co\dm23\Sedentary-reminder\Reminder\obj\Debug\Reminder.WorkFrm.resources
+F:\t_code\co\dm23\Sedentary-reminder\Reminder\obj\Debug\Reminder.Properties.Resources.resources
+F:\t_code\co\dm23\Sedentary-reminder\Reminder\obj\Debug\Reminder.RestFrm.resources
+F:\t_code\co\dm23\Sedentary-reminder\Reminder\obj\Debug\Sedentary Reminder.csproj.GenerateResource.cache
+F:\t_code\co\dm23\Sedentary-reminder\Reminder\obj\Debug\Sedentary Reminder.csproj.CoreCompileInputs.cache
+F:\t_code\co\dm23\Sedentary-reminder\Reminder\obj\Debug\Reminder.exe
+F:\t_code\co\dm23\Sedentary-reminder\Reminder\obj\Debug\Reminder.pdb

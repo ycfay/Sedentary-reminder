@@ -49,11 +49,11 @@
             this.lblSecond.AutoSize = true;
             this.lblSecond.BackColor = System.Drawing.Color.Transparent;
             this.lblSecond.Cursor = System.Windows.Forms.Cursors.SizeAll;
-            this.lblSecond.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSecond.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSecond.ForeColor = System.Drawing.Color.White;
-            this.lblSecond.Location = new System.Drawing.Point(94, 33);
+            this.lblSecond.Location = new System.Drawing.Point(81, 22);
             this.lblSecond.Name = "lblSecond";
-            this.lblSecond.Size = new System.Drawing.Size(27, 19);
+            this.lblSecond.Size = new System.Drawing.Size(24, 18);
             this.lblSecond.TabIndex = 4;
             this.lblSecond.Text = "  ";
             this.lblSecond.Click += new System.EventHandler(this.LblSecond_Click);
@@ -65,11 +65,11 @@
             // 
             this.lblMin.AutoSize = true;
             this.lblMin.BackColor = System.Drawing.Color.Transparent;
-            this.lblMin.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMin.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMin.ForeColor = System.Drawing.Color.White;
-            this.lblMin.Location = new System.Drawing.Point(55, 33);
+            this.lblMin.Location = new System.Drawing.Point(42, 22);
             this.lblMin.Name = "lblMin";
-            this.lblMin.Size = new System.Drawing.Size(27, 19);
+            this.lblMin.Size = new System.Drawing.Size(24, 18);
             this.lblMin.TabIndex = 5;
             this.lblMin.Text = "  ";
             this.lblMin.MouseDown += new System.Windows.Forms.MouseEventHandler(this.WorkFrm_MouseDown);
@@ -82,7 +82,7 @@
             this.label2.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.label2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(80, 35);
+            this.label2.Location = new System.Drawing.Point(67, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(15, 14);
             this.label2.TabIndex = 6;
@@ -95,7 +95,7 @@
             // 
             this.label3.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
-            this.label3.Location = new System.Drawing.Point(4, 9);
+            this.label3.Location = new System.Drawing.Point(4, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 37);
             this.label3.TabIndex = 8;
@@ -107,11 +107,11 @@
             // 
             this.lblWarn.AutoSize = true;
             this.lblWarn.Cursor = System.Windows.Forms.Cursors.SizeAll;
-            this.lblWarn.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblWarn.Font = new System.Drawing.Font("楷体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblWarn.ForeColor = System.Drawing.Color.White;
-            this.lblWarn.Location = new System.Drawing.Point(33, 8);
+            this.lblWarn.Location = new System.Drawing.Point(39, 4);
             this.lblWarn.Name = "lblWarn";
-            this.lblWarn.Size = new System.Drawing.Size(93, 20);
+            this.lblWarn.Size = new System.Drawing.Size(75, 16);
             this.lblWarn.TabIndex = 7;
             this.lblWarn.Text = "注意坐姿";
             this.lblWarn.Click += new System.EventHandler(this.Label1_Click);
@@ -122,8 +122,8 @@
             // WorkFrm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.Green;
-            this.ClientSize = new System.Drawing.Size(148, 55);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ClientSize = new System.Drawing.Size(118, 40);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblWarn);
             this.Controls.Add(this.label2);
