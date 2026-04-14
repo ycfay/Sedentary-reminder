@@ -42,7 +42,7 @@
             // 
             this.timerWrk.Enabled = true;
             this.timerWrk.Interval = 1000;
-            this.timerWrk.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.timerWrk.Tick += new System.EventHandler(this.TimerWrk_Tick);
             // 
             // lblSecond
             // 

@@ -77,12 +77,25 @@ namespace Reminder
             
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
+        private void TimerWrk_Tick(object sender, EventArgs e)
         {
             timing();
 
-            //设置窗口置顶
-            SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+            // 关键检查：如果窗体已经销毁、正在销毁、或句柄尚未创建，则直接返回
+            if (this.IsDisposed || this.Disposing || !this.IsHandleCreated)
+            {
+                timerWrk.Stop(); // 安全起见，停止计时器
+                return;
+            }
+            try
+            {
+                //设置窗口置顶
+                SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+            }
+            catch (ObjectDisposedException)
+            {
+                timerWrk.Stop();
+            }
         }
 
 
@@ -184,7 +197,8 @@ namespace Reminder
 
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            timerWrk.Stop();
+            timerWrk.Enabled = false;
         }
 
         private void LblSecond_Click(object sender, EventArgs e)

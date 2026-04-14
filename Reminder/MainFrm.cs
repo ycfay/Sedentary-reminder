@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -11,6 +12,8 @@ namespace Reminder
 {
     public partial class MainFrm : Form
     {
+        int wrkTime, rstTime;
+        bool input_flag;
         WorkFrm wrkFrm;
         public MainFrm()
         {
@@ -19,14 +22,22 @@ namespace Reminder
 
         private void MainFrm_Load(object sender, EventArgs e)
         {
-
+            //读取位置
+            if (File.Exists("config.ini"))
+            {
+                var time_config = OperateIniFileHelper.ReadIniData("system", "timeconfig", "0,0", Directory.GetCurrentDirectory() + "\\config.ini").Split(',');
+                if (time_config.Length>2&& !time_config[0].Equals("0") && !time_config[1].Equals("0"))
+                {
+                    this.numWrkTime.Value = Convert.ToInt32(time_config[0]);
+                    this.numRstTime.Value = Convert.ToInt32(time_config[1]);
+                    this.ckBoxInput.Checked = Convert.ToBoolean(time_config[2]);    
+                }
+            }
         }
        
 
         private void Btn_start_Click(object sender, EventArgs e)
         {
-            bool input_flag;
-
             if (this.ckBoxInput.Checked)
             {
                 input_flag = true;
@@ -35,16 +46,17 @@ namespace Reminder
                 input_flag = false;
             }
 
-            int wrkTime = (int)this.numWrkTime.Value;
-            int rstTime = (int)this.numRstTime.Value;
+            wrkTime = (int)this.numWrkTime.Value;
+            rstTime = (int)this.numRstTime.Value;
             wrkFrm = new WorkFrm(wrkTime,rstTime,input_flag);
             wrkFrm.Show();
             //MainFrm.Visible = false;
             this.Visible = false;
+            SaveConfig();
 
         }
 
-        private void 主窗体ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MainToolStripMenuItem_Click(object sender, EventArgs e)
         {            
             this.Visible = true;
             this.WindowState = FormWindowState.Normal;
@@ -52,8 +64,13 @@ namespace Reminder
             {
                 wrkFrm.Close();
             }
-            
-
+        }
+         //保存配置
+        private void SaveConfig()
+        {
+            string cstr = string.Format("{0},{1},{2}", wrkTime,rstTime, input_flag);
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini");
+            OperateIniFileHelper.WriteIniData("system", "timeconfig", cstr, path);
         }
 
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
@@ -67,13 +84,13 @@ namespace Reminder
             this.ShowInTaskbar = false;
         }
 
-        private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             notifyIcon1.Visible = false;
             System.Environment.Exit(0);
         }
 
-        private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutBox aboutBox = new AboutBox();
             aboutBox.ShowDialog();
