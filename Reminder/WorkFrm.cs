@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -37,7 +38,7 @@ namespace Reminder
             Point p = new Point(x, y);
             this.PointToScreen(p);
             this.Location = p;
-            
+
         }
         
         private void Form1_Load(object sender, EventArgs e)
@@ -81,7 +82,21 @@ namespace Reminder
         private void Timer1_Tick(object sender, EventArgs e)
         {
             timing();
+
+            //设置窗口置顶
+            SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
         }
+
+
+        // 在你的窗体类中添加
+        [DllImport("user32.dll")]
+        static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+
+        // 定义常量
+        static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
+        const uint SWP_NOSIZE = 0x0001;
+        const uint SWP_NOMOVE = 0x0002;
+        const uint SWP_NOACTIVATE = 0x0010;
 
         /// <summary>
         /// 递归的方式倒计时
