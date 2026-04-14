@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Reminder
 {
     public partial class WorkFrm : Form
     {
+        private Point mPoint;//定义一个位置信息Point用于存储鼠标位置
         private int wrk_minutes;//工作时间(分)
         private int wrk_seconds;//工作时间(秒)
         private int wrk_m;
@@ -43,18 +45,14 @@ namespace Reminder
         
         private void Form1_Load(object sender, EventArgs e)
         {
+            //读取位置
+            if (File.Exists("config.ini"))
+            {
+                var screenLocation = OperateIniFileHelper.ReadIniData("system", "location", "0,0", Directory.GetCurrentDirectory() + "\\config.ini").Split(',');
+                if (!screenLocation[0].Equals("0") && !screenLocation[1].Equals("0"))
+                    this.Location = new Point(Convert.ToInt32(screenLocation[0]), Convert.ToInt32(screenLocation[1]));
+            }
 
-            //任务栏高度
-            //Size OutTaskBarSize = new Size(SystemInformation.WorkingArea.Width, SystemInformation.WorkingArea.Height);
-            //Size ScreenSize = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
-            //this.Height = ScreenSize.Height - OutTaskBarSize.Height;
-            //Size TaskBarSize;
-
-            //TaskBarSize = new Size(
-            //                (ScreenSize.Width - (ScreenSize.Width - OutTaskBarSize.Width)),
-            //                (ScreenSize.Height - OutTaskBarSize.Height)
-             //               );
-            
 
             wrk_seconds = 0; 
 
@@ -215,6 +213,7 @@ namespace Reminder
                 mouseSet.Offset(-mouseoff.X, -mouseoff.Y);//这里注意下-的用意，offset
                 Location = mouseSet;
             }
+
         }
         private void mouseUp()
         {
@@ -232,27 +231,21 @@ namespace Reminder
         {
             mouseMove();
         }
-
+        private void WorkFrm_Move(object sender, EventArgs e)
+        {
+            mPoint = new Point(this.Left, this.Top);
+        }
         private void WorkFrm_MouseUp(object sender, MouseEventArgs e)
         {
             mouseUp();
+            // 用户松开鼠标时，保存最终位置
+            saveLocation();
         }
-
-      
-
-        private void LblWarn_MouseDown(object sender, MouseEventArgs e)
+        private void saveLocation()
         {
-            
-        }
-
-        private void LblWarn_MouseMove(object sender, MouseEventArgs e)
-        {
-           
-        }
-
-        private void LblWarn_MouseUp(object sender, MouseEventArgs e)
-        {
-           
+            string locStr = string.Format("{0},{1}", this.Location.X, this.Location.Y);
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini");
+            OperateIniFileHelper.WriteIniData("system", "location", locStr, path);
         }
     }
 }

@@ -60,6 +60,7 @@
     <Compile Include="MainFrm.Designer.cs">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OperateIniFileHelper.cs" />
     <Compile Include="WorkFrm.cs">
       <SubType>Form</SubType>
     </Compile>
