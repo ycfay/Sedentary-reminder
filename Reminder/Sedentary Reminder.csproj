@@ -61,6 +61,7 @@
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="OperateIniFileHelper.cs" />
+    <Compile Include="WinKeyBlocker.cs" />
     <Compile Include="WorkFrm.cs">
       <SubType>Form</SubType>
     </Compile>

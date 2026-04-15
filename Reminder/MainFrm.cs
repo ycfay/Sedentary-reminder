@@ -33,8 +33,9 @@ namespace Reminder
                     this.ckBoxInput.Checked = Convert.ToBoolean(time_config[2]);    
                 }
             }
+            WinKeyBlocker.Install();
         }
-       
+
 
         private void Btn_start_Click(object sender, EventArgs e)
         {

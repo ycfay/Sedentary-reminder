@@ -52,6 +52,7 @@ namespace Reminder
             this.Opacity = 0.75;
             if (input_flag)
             {
+                WinKeyBlocker.Install();
                 KeyboardBlocker.off();//锁定键盘               
             }
 
@@ -121,6 +122,7 @@ namespace Reminder
                     if (input_flag)
                     {                       
                         KeyboardBlocker.on();//解锁键盘
+                        WinKeyBlocker.Uninstall();
                     }
 
                     if (rst_s == 0)
@@ -133,20 +135,11 @@ namespace Reminder
             }
         }
 
-        private void RestFrm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
-        }
-
         private void RestFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
             //WorkFrm workFrm = new WorkFrm(wrk_m, rst_m2, input_flag);
-           // workFrm.Show();
-        }
-
-        private void lblText_Click(object sender, EventArgs e)
-        {
-
+            // workFrm.Show();
+            WinKeyBlocker.Uninstall();
         }
     }
 }
