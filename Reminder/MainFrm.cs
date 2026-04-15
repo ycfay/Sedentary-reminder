@@ -33,11 +33,16 @@ namespace Reminder
                     this.ckBoxInput.Checked = Convert.ToBoolean(time_config[2]);    
                 }
             }
+            ckBoxAutoStart.Checked = AutoStartHelper.IsAutoStartEnabled();
+
         }
 
 
         private void Btn_start_Click(object sender, EventArgs e)
         {
+            //设置开机自启
+            AutoStartHelper.SetAutoStart(ckBoxAutoStart.Checked);
+
             if (this.ckBoxInput.Checked)
             {
                 input_flag = true;

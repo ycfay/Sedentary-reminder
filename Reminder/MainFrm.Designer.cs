@@ -42,10 +42,11 @@
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.主窗体ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exit_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exit_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label4 = new System.Windows.Forms.Label();
             this.ckBoxInput = new System.Windows.Forms.CheckBox();
+            this.ckBoxAutoStart = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numWrkTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRstTime)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -84,7 +85,7 @@
             this.btn_start.BackColor = System.Drawing.Color.Transparent;
             this.btn_start.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.btn_start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_start.Location = new System.Drawing.Point(71, 178);
+            this.btn_start.Location = new System.Drawing.Point(71, 193);
             this.btn_start.Name = "btn_start";
             this.btn_start.Size = new System.Drawing.Size(75, 23);
             this.btn_start.TabIndex = 11;
@@ -162,28 +163,28 @@
             this.关于ToolStripMenuItem,
             this.exit_ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(113, 70);
             // 
             // 主窗体ToolStripMenuItem
             // 
             this.主窗体ToolStripMenuItem.Name = "主窗体ToolStripMenuItem";
-            this.主窗体ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.主窗体ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.主窗体ToolStripMenuItem.Text = "首选项";
             this.主窗体ToolStripMenuItem.Click += new System.EventHandler(this.MainToolStripMenuItem_Click);
-            // 
-            // exit_ToolStripMenuItem
-            // 
-            this.exit_ToolStripMenuItem.Name = "exit_ToolStripMenuItem";
-            this.exit_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exit_ToolStripMenuItem.Text = "退出";
-            this.exit_ToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.关于ToolStripMenuItem.Text = "关于";
             this.关于ToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            // 
+            // exit_ToolStripMenuItem
+            // 
+            this.exit_ToolStripMenuItem.Name = "exit_ToolStripMenuItem";
+            this.exit_ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.exit_ToolStripMenuItem.Text = "退出";
+            this.exit_ToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // label4
             // 
@@ -207,12 +208,22 @@
             this.ckBoxInput.Text = "休息时屏蔽键盘和鼠标";
             this.ckBoxInput.UseVisualStyleBackColor = true;
             // 
+            // ckBoxAutoStart
+            // 
+            this.ckBoxAutoStart.Location = new System.Drawing.Point(28, 169);
+            this.ckBoxAutoStart.Name = "ckBoxAutoStart";
+            this.ckBoxAutoStart.Size = new System.Drawing.Size(144, 16);
+            this.ckBoxAutoStart.TabIndex = 20;
+            this.ckBoxAutoStart.Text = "开机自启动";
+            this.ckBoxAutoStart.UseVisualStyleBackColor = true;
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(213, 226);
+            this.Controls.Add(this.ckBoxAutoStart);
             this.Controls.Add(this.ckBoxInput);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.numRstTime);
@@ -258,5 +269,6 @@
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox ckBoxInput;
+        private System.Windows.Forms.CheckBox ckBoxAutoStart;
     }
 }

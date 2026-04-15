@@ -53,6 +53,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="AutoStartHelper.cs" />
     <Compile Include="KeyboardBlocker.cs" />
     <Compile Include="MainFrm.cs">
       <SubType>Form</SubType>
