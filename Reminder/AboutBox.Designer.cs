@@ -52,7 +52,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 14);
             this.label2.TabIndex = 1;
-            this.label2.Text = "v1.2.0";
+            this.label2.Text = "v1.3.0";
             // 
             // label3
             // 
@@ -60,9 +60,9 @@
             this.label3.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(11, 71);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(126, 14);
+            this.label3.Size = new System.Drawing.Size(224, 14);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Author: Wei Junbo";
+            this.label3.Text = "Author: Wei Junbo & Richie Chang";
             // 
             // linkLabel1
             // 
