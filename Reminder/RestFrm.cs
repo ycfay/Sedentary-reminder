@@ -73,10 +73,7 @@ namespace Reminder
             else
             {
                 lbl_minutes.Text = "0" + rst_m.ToString();
-            }
-            
-            
-
+            } 
         }
 
         private void TimerRst_Tick(object sender, EventArgs e)

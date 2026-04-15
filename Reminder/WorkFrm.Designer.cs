@@ -56,7 +56,6 @@
             this.lblSecond.Size = new System.Drawing.Size(24, 18);
             this.lblSecond.TabIndex = 4;
             this.lblSecond.Text = "  ";
-            this.lblSecond.Click += new System.EventHandler(this.LblSecond_Click);
             this.lblSecond.MouseDown += new System.Windows.Forms.MouseEventHandler(this.WorkFrm_MouseDown);
             this.lblSecond.MouseMove += new System.Windows.Forms.MouseEventHandler(this.WorkFrm_MouseMove);
             this.lblSecond.MouseUp += new System.Windows.Forms.MouseEventHandler(this.WorkFrm_MouseUp);
@@ -114,7 +113,6 @@
             this.lblWarn.Size = new System.Drawing.Size(75, 16);
             this.lblWarn.TabIndex = 7;
             this.lblWarn.Text = "注意坐姿";
-            this.lblWarn.Click += new System.EventHandler(this.Label1_Click);
             this.lblWarn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.WorkFrm_MouseDown);
             this.lblWarn.MouseMove += new System.Windows.Forms.MouseEventHandler(this.WorkFrm_MouseMove);
             this.lblWarn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.WorkFrm_MouseUp);

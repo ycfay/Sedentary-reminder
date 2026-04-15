@@ -200,16 +200,6 @@ namespace Reminder
             timerWrk.Stop();
             timerWrk.Enabled = false;
         }
-
-        private void LblSecond_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label1_Click(object sender, EventArgs e)
-        {
-
-        }
         private void mouseDown(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)

@@ -34,9 +34,7 @@ namespace Reminder
                 }
             }
             ckBoxAutoStart.Checked = AutoStartHelper.IsAutoStartEnabled();
-
         }
-
 
         private void Btn_start_Click(object sender, EventArgs e)
         {
@@ -58,7 +56,6 @@ namespace Reminder
             //MainFrm.Visible = false;
             this.Visible = false;
             SaveConfig();
-
         }
 
         private void MainToolStripMenuItem_Click(object sender, EventArgs e)
@@ -77,7 +74,6 @@ namespace Reminder
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini");
             OperateIniFileHelper.WriteIniData("system", "timeconfig", cstr, path);
         }
-
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {            
             //取消关闭窗口
