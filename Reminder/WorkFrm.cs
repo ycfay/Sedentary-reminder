@@ -79,8 +79,10 @@ namespace Reminder
 
         private void TimerWrk_Tick(object sender, EventArgs e)
         {
-            timing();
-
+            // 1. 获取空闲时间（毫秒）
+            //uint idleTime = UserActivityMonitor.GetIdleTime();
+   
+            Timing();
             // 关键检查：如果窗体已经销毁、正在销毁、或句柄尚未创建，则直接返回
             if (this.IsDisposed || this.Disposing || !this.IsHandleCreated)
             {
@@ -112,7 +114,7 @@ namespace Reminder
         /// <summary>
         /// 递归的方式倒计时
         /// </summary>
-        public  void timing()
+        public  void Timing()
         {
             Warn();
 
@@ -146,8 +148,8 @@ namespace Reminder
                 {
                     timerWrk.Enabled = true;
                     wrk_seconds = 60;
-                    
-                    timing();
+
+                    Timing();
                 }
                 else
                 {
@@ -243,9 +245,9 @@ namespace Reminder
         {
             mouseUp();
             // 用户松开鼠标时，保存最终位置
-            saveLocation();
+            SaveLocation();
         }
-        private void saveLocation()
+        private void SaveLocation()
         {
             string locStr = string.Format("{0},{1}", this.Location.X, this.Location.Y);
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini");
