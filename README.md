@@ -1,42 +1,35 @@
 # Sedentary-reminder 久坐提醒小工具
+一款轻量级的桌面久坐提醒工具，帮助你按设定周期切换 **坐姿工作-休息-站立工作** 模式，告别久坐危害，养成健康办公习惯。
+> 本项目基于开源项目 [Sedentary-reminder](https://github.com/wjbgis/Sedentary-reminder) fork 进行二次修改开发，原作者为 Wei Junbo。
 
-## Repo rosters
-[![Stargazers repo roster for @wjbgis/Sedentary-reminder](https://reporoster.com/stars/wjbgis/Sedentary-reminder)](https://github.com/wjbgis/Sedentary-reminder/stargazers)
-[![Forkers repo roster for @wjbgis/Sedentary-reminder](https://reporoster.com/forks/wjbgis/Sedentary-reminder)](https://github.com/wjbgis/Sedentary-reminder/network/members)
+## ✨ 核心功能
+1.  **智能循环提醒**
+    遵循固定倒计时流程循环：`坐姿工作 → 休息 → 站立工作 → 坐姿工作 → …`
+2.  **灵活模式配置**
+    若无需站立办公，可将**站立工作时间**设为 `0`，软件将自动跳过该阶段，流程简化为 `坐姿工作 → 休息 → 坐姿工作 → …`
+3.  **贴心倒计时提示**
+    坐姿工作倒计时剩余 `15秒` 时，弹窗提醒即将进入休息阶段
+4.  **强制休息机制**
+    倒计时结束后自动弹出遮罩层，屏蔽鼠标与键盘操作
+    > 🔐 安全兜底：未屏蔽 `Ctrl+Alt+Del` 组合键，可通过该快捷键执行关机等应急操作（无法打开任务管理器）
 
-## 下载  
+## 🚀 改版新增功能
+1.  修复无法屏蔽功能按键。
+3.  增加了最近一次设置的记忆功能，避免每次打开软件都需要重复设置
+4.  增加窗体位置记忆功能，下次打开再同一位置
+5.  增加开机自启动设置项
 
-[Download](https://github.com/wjbgis/Sedentary-reminder/releases)
+## 💻 支持系统
+- Windows 10 / Windows 11
 
-## 介绍
+## 🖼️ 界面展示
+| 功能界面                   | 截图展示                                                     |
+| -------------------------- | ------------------------------------------------------------ |
+| 设置界面                   | ![设置界面](https://github.com/janu-hwh/Sedentary-reminder/blob/master/ScreenShot/1.png) |
+| 坐姿工作倒计时             | ![坐姿工作倒计时](https://github.com/janu-hwh/Sedentary-reminder/blob/master/ScreenShot/2.1.png) |
+| 站立工作倒计时             | ![站立工作倒计时](https://github.com/janu-hwh/Sedentary-reminder/blob/master/ScreenShot/5.png) |
+| 休息倒计时提醒（剩余15秒） | ![休息提醒](https://github.com/janu-hwh/Sedentary-reminder/blob/master/ScreenShot/4.png) |
+| 强制休息遮罩层             | ![强制休息遮罩层](https://github.com/janu-hwh/Sedentary-reminder/blob/master/ScreenShot/3.png) |
 
-![](https://github.com/wjbgis/Sedentary-reminder/blob/master/ScreenShot/0.png)
-
-​	偶然看到人民日报公众号这篇文章，如果数字相对准确，那确实有点震惊。感觉自己明知久坐有害，但就是不自觉，电脑前一坐就是一上午、一下午。于是就想是否有一款软件能定时提醒自己不要久坐，网上搜寻了半天，感觉找到的软件都不能“完全阻止”我久坐的行为，那干脆自己写一个算了。
-
----
-
-* 主界面很简单，也很丑，用的WinForm
-
-  ![](https://github.com/wjbgis/Sedentary-reminder/blob/master/ScreenShot/1.png)
-
-* 点击`开始`之后就开始倒计时
-
-  ![](https://github.com/wjbgis/Sedentary-reminder/blob/master/ScreenShot/2.1.png)
-
-* 工作倒计时剩余15秒时，提示用户即将锁定输入
-
-  ![](https://github.com/wjbgis/Sedentary-reminder/blob/master/ScreenShot/4.png)
-
-* 倒计时结束，显示遮罩层，屏蔽鼠标、键盘（为防止意外，未屏蔽`ctrl`+`alt`+`del`组合按键，可通过该组合键关机，但无法使用任务管理器）
-
-  ![](https://github.com/wjbgis/Sedentary-reminder/blob/master/ScreenShot/3.png)
-  
-* 休息结束，继续开始工作倒计时
-
-* **支持系统：Win7/10**
-
-## 致谢
-
-感谢 [netnr](https://github.com/netnr) 提的宝贵建议，让我有了继续更新的动力
-
+## 🤝 贡献指南
+欢迎提交 Issue 反馈 Bug 或提出新功能建议，也可以直接 Fork 仓库提交 Pull Request 参与开发。
