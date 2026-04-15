@@ -27,7 +27,6 @@
 | -------------------------- | ------------------------------------------------------------ |
 | 设置界面                   | ![设置界面](https://github.com/janu-hwh/Sedentary-reminder/blob/master/ScreenShot/1.png) |
 | 坐姿工作倒计时             | ![坐姿工作倒计时](https://github.com/janu-hwh/Sedentary-reminder/blob/master/ScreenShot/2.1.png) |
-| 站立工作倒计时             | ![站立工作倒计时](https://github.com/janu-hwh/Sedentary-reminder/blob/master/ScreenShot/5.png) |
 | 休息倒计时提醒（剩余15秒） | ![休息提醒](https://github.com/janu-hwh/Sedentary-reminder/blob/master/ScreenShot/4.png) |
 | 强制休息遮罩层             | ![强制休息遮罩层](https://github.com/janu-hwh/Sedentary-reminder/blob/master/ScreenShot/3.png) |
 
