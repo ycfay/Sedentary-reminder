@@ -46,6 +46,7 @@ namespace Reminder
 
             }
             ckBoxAutoStart.Checked = AutoStartHelper.IsAutoStartEnabled();
+
         }
 
         private void Btn_start_Click(object sender, EventArgs e)
@@ -69,6 +70,10 @@ namespace Reminder
                 MessageBox.Show("我真是奇了怪了,到底是什么公司,请你们这些天天带薪摸鱼的家伙!\r\n休息时间不能大于工作时间!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+            if (wrkFrm != null)
+            {
+                wrkFrm.Close();
+            }
             wrkFrm = new WorkFrm(wrkTime,rstTime,input_flag);
             wrkFrm.Show();
             //MainFrm.Visible = false;
@@ -80,9 +85,9 @@ namespace Reminder
         {            
             this.Visible = true;
             this.WindowState = FormWindowState.Normal;
-            if (wrkFrm!=null)
+            if (wrkFrm != null)
             {
-                wrkFrm.Close();
+                wrkFrm.Visible=false;
             }
         }
          //保存配置
@@ -104,6 +109,10 @@ namespace Reminder
             this.Visible = false;
             //不在系统任务栏显示主窗口图标
             this.ShowInTaskbar = false;
+            if (wrkFrm != null)
+            {
+                wrkFrm.Visible = true;
+            }
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
