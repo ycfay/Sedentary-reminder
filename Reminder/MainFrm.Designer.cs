@@ -89,7 +89,7 @@
             this.btn_start.BackColor = System.Drawing.Color.Transparent;
             this.btn_start.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.btn_start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_start.Location = new System.Drawing.Point(58, 250);
+            this.btn_start.Location = new System.Drawing.Point(62, 234);
             this.btn_start.Name = "btn_start";
             this.btn_start.Size = new System.Drawing.Size(75, 23);
             this.btn_start.TabIndex = 11;
@@ -254,7 +254,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(213, 286);
+            this.ClientSize = new System.Drawing.Size(213, 265);
             this.Controls.Add(this.ckBoxLockWindow);
             this.Controls.Add(this.btn_start);
             this.Controls.Add(this.trackBar);
