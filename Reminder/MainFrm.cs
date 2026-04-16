@@ -34,7 +34,6 @@ namespace Reminder
                 }
             }
             ckBoxAutoStart.Checked = AutoStartHelper.IsAutoStartEnabled();
-            WinKeyBlocker.Install();
         }
 
         private void Btn_start_Click(object sender, EventArgs e)
