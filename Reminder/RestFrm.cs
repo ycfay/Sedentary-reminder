@@ -49,7 +49,11 @@ namespace Reminder
             this.TopMost = true;
            
             this.WindowState = FormWindowState.Maximized;
-            this.Opacity = 0.75;
+            var opacity = OperateIniFileHelper.ReadIniData("system", "opacity", "7", OperateIniFileHelper.localPath + "\\reminder_config.ini");
+            if (!String.IsNullOrEmpty(opacity))
+            {
+                this.Opacity = Convert.ToInt32(opacity) / 10.0;
+            }
             if (input_flag)
             {
                 WinKeyBlocker.Install();

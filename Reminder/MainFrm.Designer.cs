@@ -47,15 +47,18 @@
             this.label4 = new System.Windows.Forms.Label();
             this.ckBoxInput = new System.Windows.Forms.CheckBox();
             this.ckBoxAutoStart = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.trackBar = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.numWrkTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRstTime)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 50);
+            this.label1.Location = new System.Drawing.Point(27, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 0;
@@ -65,7 +68,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(11, 19);
+            this.label2.Location = new System.Drawing.Point(12, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 14);
             this.label2.TabIndex = 3;
@@ -74,7 +77,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 77);
+            this.label3.Location = new System.Drawing.Point(27, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 12);
             this.label3.TabIndex = 5;
@@ -85,7 +88,7 @@
             this.btn_start.BackColor = System.Drawing.Color.Transparent;
             this.btn_start.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.btn_start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_start.Location = new System.Drawing.Point(71, 193);
+            this.btn_start.Location = new System.Drawing.Point(58, 229);
             this.btn_start.Name = "btn_start";
             this.btn_start.Size = new System.Drawing.Size(75, 23);
             this.btn_start.TabIndex = 11;
@@ -96,7 +99,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(146, 51);
+            this.label5.Location = new System.Drawing.Point(147, 41);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 14;
@@ -105,7 +108,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(146, 78);
+            this.label6.Location = new System.Drawing.Point(147, 68);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 15;
@@ -114,7 +117,7 @@
             // numWrkTime
             // 
             this.numWrkTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numWrkTime.Location = new System.Drawing.Point(96, 47);
+            this.numWrkTime.Location = new System.Drawing.Point(97, 37);
             this.numWrkTime.Maximum = new decimal(new int[] {
             120,
             0,
@@ -133,7 +136,7 @@
             // 
             this.numRstTime.BackColor = System.Drawing.Color.White;
             this.numRstTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numRstTime.Location = new System.Drawing.Point(95, 74);
+            this.numRstTime.Location = new System.Drawing.Point(96, 64);
             this.numRstTime.Maximum = new decimal(new int[] {
             30,
             0,
@@ -190,7 +193,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(11, 117);
+            this.label4.Location = new System.Drawing.Point(12, 94);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 14);
             this.label4.TabIndex = 18;
@@ -201,7 +204,7 @@
             this.ckBoxInput.AutoSize = true;
             this.ckBoxInput.Checked = true;
             this.ckBoxInput.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckBoxInput.Location = new System.Drawing.Point(28, 144);
+            this.ckBoxInput.Location = new System.Drawing.Point(29, 123);
             this.ckBoxInput.Name = "ckBoxInput";
             this.ckBoxInput.Size = new System.Drawing.Size(144, 16);
             this.ckBoxInput.TabIndex = 19;
@@ -210,19 +213,41 @@
             // 
             // ckBoxAutoStart
             // 
-            this.ckBoxAutoStart.Location = new System.Drawing.Point(28, 169);
+            this.ckBoxAutoStart.Location = new System.Drawing.Point(29, 148);
             this.ckBoxAutoStart.Name = "ckBoxAutoStart";
             this.ckBoxAutoStart.Size = new System.Drawing.Size(144, 16);
             this.ckBoxAutoStart.TabIndex = 20;
             this.ckBoxAutoStart.Text = "开机自启动";
             this.ckBoxAutoStart.UseVisualStyleBackColor = true;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(27, 175);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 12);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "屏幕透明度：";
+            // 
+            // trackBar
+            // 
+            this.trackBar.Location = new System.Drawing.Point(99, 172);
+            this.trackBar.Minimum = 1;
+            this.trackBar.Name = "trackBar";
+            this.trackBar.Size = new System.Drawing.Size(104, 45);
+            this.trackBar.TabIndex = 22;
+            this.trackBar.Value = 1;
+            this.trackBar.ValueChanged += new System.EventHandler(this.trackBar_ValueChanged);
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(213, 226);
+            this.ClientSize = new System.Drawing.Size(215, 265);
+            this.Controls.Add(this.btn_start);
+            this.Controls.Add(this.trackBar);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.ckBoxAutoStart);
             this.Controls.Add(this.ckBoxInput);
             this.Controls.Add(this.label4);
@@ -230,7 +255,6 @@
             this.Controls.Add(this.numWrkTime);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.btn_start);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -246,6 +270,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numWrkTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRstTime)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,5 +295,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox ckBoxInput;
         private System.Windows.Forms.CheckBox ckBoxAutoStart;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TrackBar trackBar;
     }
 }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -32,6 +33,12 @@ namespace Reminder
                     this.numRstTime.Value = Convert.ToInt32(time_config[1]);
                     this.ckBoxInput.Checked = Convert.ToBoolean(time_config[2]);    
                 }
+                var opacity = OperateIniFileHelper.ReadIniData("system", "opacity", "7", OperateIniFileHelper.localPath + "\\reminder_config.ini");
+                if (!String.IsNullOrEmpty(opacity))
+                {
+                    this.trackBar.Value = Convert.ToInt32(opacity);
+                }
+
             }
             ckBoxAutoStart.Checked = AutoStartHelper.IsAutoStartEnabled();
         }
@@ -73,6 +80,7 @@ namespace Reminder
             string cstr = string.Format("{0},{1},{2}", wrkTime,rstTime, input_flag);
             string path = Path.Combine(OperateIniFileHelper.localPath, "reminder_config.ini");
             OperateIniFileHelper.WriteIniData("system", "timeconfig", cstr, path);
+            OperateIniFileHelper.WriteIniData("system", "opacity", this.trackBar.Value.ToString(), path);
         }
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {            
@@ -89,6 +97,11 @@ namespace Reminder
         {
             notifyIcon1.Visible = false;
             System.Environment.Exit(0);
+        }
+
+        private void trackBar_ValueChanged(object sender, EventArgs e)
+        {
+            this.Opacity = Convert.ToInt32(trackBar.Value) / 10.0;
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
