@@ -25,7 +25,7 @@ namespace Reminder
             //读取位置
             if (File.Exists("config.ini"))
             {
-                var time_config = OperateIniFileHelper.ReadIniData("system", "timeconfig", "0,0", Directory.GetCurrentDirectory() + "\\config.ini").Split(',');
+                var time_config = OperateIniFileHelper.ReadIniData("system", "timeconfig", "0,0", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\config.ini").Split(',');
                 if (time_config.Length>2&& !time_config[0].Equals("0") && !time_config[1].Equals("0"))
                 {
                     this.numWrkTime.Value = Convert.ToInt32(time_config[0]);
@@ -71,7 +71,7 @@ namespace Reminder
         private void SaveConfig()
         {
             string cstr = string.Format("{0},{1},{2}", wrkTime,rstTime, input_flag);
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini");
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "config.ini");
             OperateIniFileHelper.WriteIniData("system", "timeconfig", cstr, path);
         }
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
