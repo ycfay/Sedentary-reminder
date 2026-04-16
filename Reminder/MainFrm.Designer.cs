@@ -227,11 +227,11 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 12);
             this.label7.TabIndex = 21;
-            this.label7.Text = "屏幕透明度：";
+            this.label7.Text = "锁屏透明度：";
             // 
             // trackBar
             // 
-            this.trackBar.Location = new System.Drawing.Point(99, 172);
+            this.trackBar.Location = new System.Drawing.Point(99, 171);
             this.trackBar.Minimum = 1;
             this.trackBar.Name = "trackBar";
             this.trackBar.Size = new System.Drawing.Size(104, 45);
