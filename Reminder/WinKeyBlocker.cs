@@ -49,11 +49,12 @@ namespace Reminder
 
         private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
+            int[] keys = { 8, 13,  27, 8, 46, 91, 92, 93, 112, 119, 160, 162, 163, 164, 165 }; // 左Win、右Win、Esc、Backspace、Delete、Enter、Ctrl、Shift、Alt
             if (nCode >= 0 && (wParam == (IntPtr)WM_KEYDOWN || wParam == (IntPtr)WM_SYSKEYDOWN))
             {
                 int vkCode = Marshal.ReadInt32(lParam);
                 // 屏蔽 左Win (91) 和 右Win (92)
-                if (vkCode == 91 || vkCode == 92 || vkCode == 27 || vkCode == 8 || vkCode == 46 || vkCode == 13 || vkCode == 162 || vkCode == 160)
+               if (keys.Contains(vkCode))
                 {
                     return (IntPtr)1; // 返回 1 表示拦截，不传递给系统
                 }
