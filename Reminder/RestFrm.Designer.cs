@@ -44,6 +44,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.picBox = new System.Windows.Forms.PictureBox();
             this.lblMotion = new System.Windows.Forms.Label();
+            this.timerLockWindow = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -186,11 +187,17 @@
             this.lblMotion.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblMotion.AutoSize = true;
             this.lblMotion.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblMotion.Location = new System.Drawing.Point(232, 708);
+            this.lblMotion.Location = new System.Drawing.Point(232, 711);
             this.lblMotion.Name = "lblMotion";
             this.lblMotion.Size = new System.Drawing.Size(345, 20);
             this.lblMotion.TabIndex = 14;
             this.lblMotion.Text = "键盘和鼠标被锁定，站起来活动下！";
+            // 
+            // timerLockWindow
+            // 
+            this.timerLockWindow.Enabled = true;
+            this.timerLockWindow.Interval = 1000;
+            this.timerLockWindow.Tick += new System.EventHandler(this.timerLockWindow_Tick);
             // 
             // RestFrm
             // 
@@ -243,5 +250,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox picBox;
         private System.Windows.Forms.Label lblMotion;
+        private System.Windows.Forms.Timer timerLockWindow;
     }
 }

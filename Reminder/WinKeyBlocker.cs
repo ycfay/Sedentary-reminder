@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Linq;
-using System.Text;
 
 namespace Reminder
 {
-    using System;
-    using System.Runtime.InteropServices;
-    using System.Windows.Forms;
-
     public class WinKeyBlocker
     {
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
@@ -24,6 +19,10 @@ namespace Reminder
 
         [DllImport("kernel32.dll")]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
+
+        // 导入 user32.dll 中的锁定函数
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool LockWorkStation();
 
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
@@ -60,6 +59,20 @@ namespace Reminder
                 }
             }
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
+        }
+
+        public static void Lock()
+        {
+            // 执行锁定命令
+            if (!LockWorkStation())
+            {
+                // 如果返回 false，通常是因为当前环境不允许锁定
+                Console.WriteLine("锁定失败。");
+            }
+            else
+            {
+                Console.WriteLine("计算机已锁定。");
+            }
         }
     }
 

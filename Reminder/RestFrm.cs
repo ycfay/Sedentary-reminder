@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -19,8 +20,9 @@ namespace Reminder
         private int rst_m2;
         private bool input_flag;
         int rst_s = 0;
+        Stopwatch sw;
 
-        
+
         public RestFrm()
         {
             InitializeComponent();
@@ -45,7 +47,8 @@ namespace Reminder
             {
                 lblText.Text = "您已久坐" + wrk_m.ToString() + "分钟了，站起来活动下！Alt+F4 退出本界面。";
             }
-
+            sw = new Stopwatch();
+            sw.Start();
             timerRst.Enabled = true;            
             this.TopMost = true;
            
@@ -63,8 +66,9 @@ namespace Reminder
             }
             if (input_flag)
             {
+                //锁定键盘
                 WinKeyBlocker.Install();
-                KeyboardBlocker.off();//锁定键盘               
+                KeyboardBlocker.off();
             }
 
             if (rst_s >= 10)
@@ -145,9 +149,23 @@ namespace Reminder
 
         private void RestFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //WorkFrm workFrm = new WorkFrm(wrk_m, rst_m2, input_flag);
-            // workFrm.Show();
             WinKeyBlocker.Uninstall();
+        }
+
+        private void timerLockWindow_Tick(object sender, EventArgs e)
+        {
+            // 判断是否过了3,000毫秒
+            if (sw.ElapsedMilliseconds >= 3000) 
+            {
+                // 锁定窗口
+                var lockWindow = OperateIniFileHelper.ReadIniData("system", "lockwindow", "False", OperateIniFileHelper.localPath + "\\reminder_config.ini").ToLower();
+                if (lockWindow == "true")
+                {
+                    WinKeyBlocker.Lock();
+                }
+                timerLockWindow.Stop();
+                sw.Stop();
+            }
         }
     }
 }

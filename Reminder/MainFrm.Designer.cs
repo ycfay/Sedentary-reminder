@@ -49,6 +49,7 @@
             this.ckBoxAutoStart = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.trackBar = new System.Windows.Forms.TrackBar();
+            this.ckBoxLockWindow = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numWrkTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRstTime)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -88,7 +89,7 @@
             this.btn_start.BackColor = System.Drawing.Color.Transparent;
             this.btn_start.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.btn_start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_start.Location = new System.Drawing.Point(58, 231);
+            this.btn_start.Location = new System.Drawing.Point(58, 250);
             this.btn_start.Name = "btn_start";
             this.btn_start.Size = new System.Drawing.Size(75, 23);
             this.btn_start.TabIndex = 11;
@@ -213,7 +214,7 @@
             // 
             // ckBoxAutoStart
             // 
-            this.ckBoxAutoStart.Location = new System.Drawing.Point(29, 150);
+            this.ckBoxAutoStart.Location = new System.Drawing.Point(29, 169);
             this.ckBoxAutoStart.Name = "ckBoxAutoStart";
             this.ckBoxAutoStart.Size = new System.Drawing.Size(144, 16);
             this.ckBoxAutoStart.TabIndex = 20;
@@ -223,7 +224,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(27, 177);
+            this.label7.Location = new System.Drawing.Point(27, 196);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 12);
             this.label7.TabIndex = 21;
@@ -231,7 +232,7 @@
             // 
             // trackBar
             // 
-            this.trackBar.Location = new System.Drawing.Point(99, 173);
+            this.trackBar.Location = new System.Drawing.Point(99, 192);
             this.trackBar.Minimum = 1;
             this.trackBar.Name = "trackBar";
             this.trackBar.Size = new System.Drawing.Size(104, 45);
@@ -239,12 +240,22 @@
             this.trackBar.Value = 1;
             this.trackBar.ValueChanged += new System.EventHandler(this.trackBar_ValueChanged);
             // 
+            // ckBoxLockWindow
+            // 
+            this.ckBoxLockWindow.Location = new System.Drawing.Point(29, 147);
+            this.ckBoxLockWindow.Name = "ckBoxLockWindow";
+            this.ckBoxLockWindow.Size = new System.Drawing.Size(144, 16);
+            this.ckBoxLockWindow.TabIndex = 23;
+            this.ckBoxLockWindow.Text = "休息时自动锁定屏幕";
+            this.ckBoxLockWindow.UseVisualStyleBackColor = true;
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(215, 265);
+            this.ClientSize = new System.Drawing.Size(213, 286);
+            this.Controls.Add(this.ckBoxLockWindow);
             this.Controls.Add(this.btn_start);
             this.Controls.Add(this.trackBar);
             this.Controls.Add(this.label7);
@@ -297,5 +308,6 @@
         private System.Windows.Forms.CheckBox ckBoxAutoStart;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TrackBar trackBar;
+        private System.Windows.Forms.CheckBox ckBoxLockWindow;
     }
 }

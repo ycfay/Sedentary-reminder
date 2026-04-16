@@ -38,6 +38,11 @@ namespace Reminder
                 {
                     this.trackBar.Value = Convert.ToInt32(opacity);
                 }
+                var lockWindow = OperateIniFileHelper.ReadIniData("system", "lockwindow", "False", OperateIniFileHelper.localPath + "\\reminder_config.ini");
+                if (!String.IsNullOrEmpty(opacity))
+                {
+                    this.ckBoxLockWindow.Checked = Convert.ToBoolean(lockWindow);
+                }
 
             }
             ckBoxAutoStart.Checked = AutoStartHelper.IsAutoStartEnabled();
@@ -87,6 +92,8 @@ namespace Reminder
             string path = Path.Combine(OperateIniFileHelper.localPath, "reminder_config.ini");
             OperateIniFileHelper.WriteIniData("system", "timeconfig", cstr, path);
             OperateIniFileHelper.WriteIniData("system", "opacity", this.trackBar.Value.ToString(), path);
+            OperateIniFileHelper.WriteIniData("system", "lockwindow", this.ckBoxLockWindow.Checked.ToString(), path);
+
         }
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {            
