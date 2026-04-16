@@ -46,9 +46,9 @@ namespace Reminder
         private void Form1_Load(object sender, EventArgs e)
         {
             //读取位置
-            if (File.Exists("config.ini"))
+            if (File.Exists(OperateIniFileHelper.localPath+ "\\config.ini"))    
             {
-                var screenLocation = OperateIniFileHelper.ReadIniData("system", "location", "0,0", Directory.GetCurrentDirectory() + "\\config.ini").Split(',');
+                var screenLocation = OperateIniFileHelper.ReadIniData("system", "location", "0,0", OperateIniFileHelper.localPath + "\\reminder_config.ini").Split(',');
                 if (!screenLocation[0].Equals("0") && !screenLocation[1].Equals("0"))
                     this.Location = new Point(Convert.ToInt32(screenLocation[0]), Convert.ToInt32(screenLocation[1]));
             }
@@ -250,7 +250,7 @@ namespace Reminder
         private void SaveLocation()
         {
             string locStr = string.Format("{0},{1}", this.Location.X, this.Location.Y);
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini");
+            string path = Path.Combine(OperateIniFileHelper.localPath, "reminder_config.ini");
             OperateIniFileHelper.WriteIniData("system", "location", locStr, path);
         }
     }

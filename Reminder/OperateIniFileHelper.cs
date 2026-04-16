@@ -8,6 +8,11 @@ namespace Reminder
 {
     public class OperateIniFileHelper
     {
+        /// <summary>
+        /// 本地AppData路径
+        /// </summary>
+        public static string localPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
         #region API函数声明
 
         [DllImport("kernel32")]//返回0表示失败，非0为成功
