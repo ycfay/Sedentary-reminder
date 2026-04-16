@@ -21,7 +21,8 @@ namespace Reminder
         private bool input_flag;
         int rst_s = 0;
         Stopwatch sw;
-
+        // 事件
+        public event EventHandler Reset;
 
         public RestFrm()
         {
@@ -139,8 +140,8 @@ namespace Reminder
 
                     if (rst_s == 0)
                     {
-                        WorkFrm workFrm = new WorkFrm(wrk_m, rst_m2, input_flag);
-                        workFrm.Show();
+                        // 触发事件，传递自己(this)和空参数
+                        Reset?.Invoke(this, EventArgs.Empty);
                     }
                     this.Close();
                 }

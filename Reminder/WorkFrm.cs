@@ -31,16 +31,8 @@ namespace Reminder
             InitializeComponent();           
             this.wrk_minutes = wrk_minutes;
             this.rst_minutes = rst_minutes;
-            //this.input_flag = input_flag;
             this.wrk_m = wrk_minutes;
             this.input_flag = input_flag;
-
-            int x = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Width - 160;
-            int y = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Height - 90;
-            Point p = new Point(x, y);
-            this.PointToScreen(p);
-            this.Location = p;
-
         }
         
         private void Form1_Load(object sender, EventArgs e)
@@ -52,7 +44,6 @@ namespace Reminder
                 if (!screenLocation[0].Equals("0") && !screenLocation[1].Equals("0"))
                     this.Location = new Point(Convert.ToInt32(screenLocation[0]), Convert.ToInt32(screenLocation[1]));
             }
-
 
             wrk_seconds = 0; 
 
@@ -73,8 +64,11 @@ namespace Reminder
                 lblMin.Text = "0"+wrk_minutes.ToString();
             }
 
-            this.Opacity = 0.8;
-            
+            lblWarn.Text = "注意坐姿";
+            this.BackColor = Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            lblWarn.ForeColor = Color.White;
+
+            this.Opacity = 0.8;            
         }
 
         private void TimerWrk_Tick(object sender, EventArgs e)
@@ -134,31 +128,42 @@ namespace Reminder
             else //秒=0时，分钟-1
             {
                 timerWrk.Enabled = false;
-                wrk_minutes--;
-                if (wrk_minutes >= 10)
+                wrk_m--;
+                if (wrk_m >= 10)
                 {
-                    lblMin.Text = wrk_minutes.ToString();
+                    lblMin.Text = wrk_m.ToString();
                 }
                 else
                 {
-                    lblMin.Text = "0"+wrk_minutes.ToString();
+                    lblMin.Text = "0"+ wrk_m.ToString();
                 }
                 
-                if (wrk_minutes > -1) //若分钟不为0，秒回到60，继续递归
+                if (wrk_m > -1) //若分钟不为0，秒回到60，继续递归
                 {
                     timerWrk.Enabled = true;
                     wrk_seconds = 60;
-
                     Timing();
                 }
                 else
                 {
-
-                    this.Close();
-                    RestFrm restFrm = new RestFrm(rst_minutes, wrk_m, input_flag);
-                    restFrm.ShowDialog();                   
+                    // 不要 Close 主窗体（会导致窗体被 Dispose 无法再次 Show），改为 Hide
+                    this.Hide();
+                    RestFrm restFrm = new RestFrm(rst_minutes, wrk_minutes, input_flag);
+                    // 必须在 ShowDialog 之前订阅事件，这样 RestFrm 在触发时 WorkFrm 能接收到
+                    restFrm.Reset += RestFrm_Rreset;
+                    restFrm.ShowDialog();
+                    // ShowDialog 返回后，RestFrm 已经关闭，RestFrm_Rreset 会负责恢复并重新启动计时器
                 }
             }
+        }
+
+        private void RestFrm_Rreset(object sender, EventArgs e)
+        {
+            wrk_m = wrk_minutes;
+            this.Form1_Load(sender, e);
+            this.Show();
+            // 启动计时器，恢复计时
+            timerWrk.Enabled = true;
         }
 
         /// <summary>
@@ -166,13 +171,13 @@ namespace Reminder
         /// </summary>
         private void Warn()
         {
-            if (wrk_minutes==0&&wrk_seconds<=16)
+            if (wrk_m == 0&&wrk_seconds<=16)
             {
                 this.BackColor = Color.Red;
                 lblWarn.ForeColor = Color.Yellow;
                 lblWarn.Text = "该休息了！";
-                int x = (System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Width) / 2 - this.Width/2;
-                int y = (System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Height) / 2 - this.Height/2;
+                int x = (Screen.PrimaryScreen.WorkingArea.Size.Width) / 2 - this.Width/2;
+                int y = (Screen.PrimaryScreen.WorkingArea.Size.Height) / 2 - this.Height/2;
                 Point p = new Point(x, y);
                 this.PointToScreen(p);
                 this.Location = p;
