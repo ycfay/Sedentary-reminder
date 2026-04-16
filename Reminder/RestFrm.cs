@@ -51,9 +51,9 @@ namespace Reminder
             sw = new Stopwatch();
             sw.Start();
             timerRst.Enabled = true;            
-            this.TopMost = true;
+            //this.TopMost = true;
            
-            this.WindowState = FormWindowState.Maximized;
+            //this.WindowState = FormWindowState.Maximized;
             int idx = new Random().Next(1, 5);
             picBox.Image= (Bitmap)Resources.ResourceManager.GetObject("gif0"+idx);
             picBox.Left = (this.ClientSize.Width - picBox.Width) / 2;
@@ -155,8 +155,9 @@ namespace Reminder
 
         private void timerLockWindow_Tick(object sender, EventArgs e)
         {
+            int expriems = (this.rst_m2 * 60 - 3) * 1000;
             // 判断是否过了3,000毫秒
-            if (sw.ElapsedMilliseconds >= 3000) 
+            if (sw.ElapsedMilliseconds >= expriems) 
             {
                 // 锁定窗口
                 var lockWindow = OperateIniFileHelper.ReadIniData("system", "lockwindow", "False", OperateIniFileHelper.localPath + "\\reminder_config.ini").ToLower();
