@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="sit_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\asset\sit_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="sit_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\asset\sit_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,5 +132,38 @@
   </data>
   <data name="sport_64_03" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\asset\sport_64_03.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sit_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\asset\sit_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gif01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\asset\01.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gif02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\asset\02.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gif03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\asset\03.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gif04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\asset\04.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gif05" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\asset\05.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="str01" xml:space="preserve">
+    <value>原地踏步的时候，手掌向上朝天花板的方向推出去，手掌收回来的时候大拇指差不多要碰到你的肩膀。通过同时托举水瓶可以加大难度。</value>
+  </data>
+  <data name="str02" xml:space="preserve">
+    <value>两手叉腰，左腿向左侧滑动，上身跟着移动，最大跨度后，腿部弯曲下蹲，右腿保持伸直。归位，向右再来一遍</value>
+  </data>
+  <data name="str03" xml:space="preserve">
+    <value>两手向左挥动手臂高过你的头顶，换腿的时候手臂向下，然后向右再来一遍。高喊 我爱上班？自己决定哦。</value>
+  </data>
+  <data name="str04" xml:space="preserve">
+    <value>站直或坐直，将右手手背抵在腰上，将左手举过头顶，放在头上；左手慢慢地把头拉向左肩，伸展脖子右侧的肌肉</value>
+  </data>
+  <data name="str05" xml:space="preserve">
+    <value>站直或坐直，努力向下收紧两侧肩胛骨，就像肩胛骨之间有一支铅笔需要抓住一样。这个过程中，要避免耸肩。保持5秒钟，然后放松，重复10次。你应该能感觉到肩膀上斜方肌的拉伸。</value>
   </data>
 </root>

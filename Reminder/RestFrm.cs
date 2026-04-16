@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reminder.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,7 @@ namespace Reminder
         private int rst_m2;
         private bool input_flag;
         int rst_s = 0;
+
         
         public RestFrm()
         {
@@ -33,7 +35,8 @@ namespace Reminder
         }
         
         private void RestFrm_Load(object sender, EventArgs e)
-        {           
+        {
+           
             if (input_flag)
             {
                 lblText.Text = "您已久坐" + wrk_m.ToString() + "分钟了，键盘和鼠标被锁定，站起来活动下！";
@@ -43,12 +46,16 @@ namespace Reminder
                 lblText.Text = "您已久坐" + wrk_m.ToString() + "分钟了，站起来活动下！Alt+F4 退出本界面。";
             }
 
-            //lblText.Text = "您已久坐60分钟了，键盘和鼠标被锁定，站起来活动下！";
-
             timerRst.Enabled = true;            
             this.TopMost = true;
            
             this.WindowState = FormWindowState.Maximized;
+            int idx = new Random().Next(1, 5);
+            picBox.Image= (Bitmap)Resources.ResourceManager.GetObject("gif0"+idx);
+            picBox.Left = (this.ClientSize.Width - picBox.Width) / 2;
+            lblMotion.Text = Resources.ResourceManager.GetString("str0" + idx);
+            lblMotion.Left = (this.ClientSize.Width - lblMotion.Width) / 2;
+
             var opacity = OperateIniFileHelper.ReadIniData("system", "opacity", "7", OperateIniFileHelper.localPath + "\\reminder_config.ini");
             if (!String.IsNullOrEmpty(opacity))
             {

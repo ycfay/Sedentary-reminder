@@ -58,6 +58,12 @@ namespace Reminder
 
             wrkTime = (int)this.numWrkTime.Value;
             rstTime = (int)this.numRstTime.Value;
+            //时间检测
+            if (rstTime > wrkTime)
+            {
+                MessageBox.Show("我真是奇了怪了,到底是什么公司,请你们这些天天带薪摸鱼的家伙!\r\n休息时间不能大于工作时间!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             wrkFrm = new WorkFrm(wrkTime,rstTime,input_flag);
             wrkFrm.Show();
             //MainFrm.Visible = false;
