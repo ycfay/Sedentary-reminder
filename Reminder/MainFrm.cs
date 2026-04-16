@@ -15,6 +15,7 @@ namespace Reminder
         int wrkTime, rstTime;
         bool input_flag;
         WorkFrm wrkFrm;
+        string localPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         public MainFrm()
         {
             InitializeComponent();
@@ -23,9 +24,9 @@ namespace Reminder
         private void MainFrm_Load(object sender, EventArgs e)
         {
             //读取位置
-            if (File.Exists("config.ini"))
+            if (File.Exists(localPath+"\\reminder_config.ini"))
             {
-                var time_config = OperateIniFileHelper.ReadIniData("system", "timeconfig", "0,0", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\config.ini").Split(',');
+                var time_config = OperateIniFileHelper.ReadIniData("system", "timeconfig", "0,0", localPath + "\\reminder_config.ini").Split(',');
                 if (time_config.Length>2&& !time_config[0].Equals("0") && !time_config[1].Equals("0"))
                 {
                     this.numWrkTime.Value = Convert.ToInt32(time_config[0]);
@@ -71,7 +72,7 @@ namespace Reminder
         private void SaveConfig()
         {
             string cstr = string.Format("{0},{1},{2}", wrkTime,rstTime, input_flag);
-            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "config.ini");
+            string path = Path.Combine(localPath, "reminder_config.ini");
             OperateIniFileHelper.WriteIniData("system", "timeconfig", cstr, path);
         }
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
