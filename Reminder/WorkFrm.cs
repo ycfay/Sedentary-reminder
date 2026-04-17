@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -13,6 +11,7 @@ namespace Reminder
 {
     public partial class WorkFrm : Form
     {
+
         private Point mPoint;//定义一个位置信息Point用于存储鼠标位置
         private int wrk_minutes;//工作时间(分)
         private int wrk_seconds;//工作时间(秒)
@@ -21,6 +20,10 @@ namespace Reminder
         private bool input_flag;//是否选中锁定键盘
         private bool left_flag;//鼠标左键是否点击
         private Point mouseoff;
+        /// <summary>
+        /// 记录再加5分钟次数
+        /// </summary>
+        private int countdown;
         public WorkFrm()
         {
             InitializeComponent();
@@ -37,14 +40,38 @@ namespace Reminder
         
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Size = new Size(110, 40);
+            this.BackColor = Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+
+            this.Move += new System.EventHandler(this.WorkFrm_Move);
+            this.MouseUp += new MouseEventHandler(this.WorkFrm_MouseUp);
+            this.MouseDown += new MouseEventHandler(this.WorkFrm_MouseDown);
+            this.lblSecond.MouseDown += new MouseEventHandler(this.WorkFrm_MouseDown);
+            this.lblMin.MouseDown += new MouseEventHandler(this.WorkFrm_MouseDown);
+            this.label2.MouseDown += new MouseEventHandler(this.WorkFrm_MouseDown);
+            this.label3.MouseDown += new MouseEventHandler(this.WorkFrm_MouseDown);
+            this.lblWarn.MouseDown += new MouseEventHandler(this.WorkFrm_MouseDown);
+
+            this.lblSecond.MouseMove += new MouseEventHandler(this.WorkFrm_MouseMove);
+            this.lblMin.MouseMove += new MouseEventHandler(this.WorkFrm_MouseMove);
+            this.label2.MouseMove += new MouseEventHandler(this.WorkFrm_MouseMove);
+            this.label3.MouseMove += new MouseEventHandler(this.WorkFrm_MouseMove);
+            this.lblWarn.MouseMove += new MouseEventHandler(this.WorkFrm_MouseMove);
+
+            this.lblSecond.MouseUp += new MouseEventHandler(this.WorkFrm_MouseUp);
+            this.lblMin.MouseUp += new MouseEventHandler(this.WorkFrm_MouseUp);
+            this.label2.MouseUp += new MouseEventHandler(this.WorkFrm_MouseUp);
+            this.label3.MouseUp += new MouseEventHandler(this.WorkFrm_MouseUp);
+            this.lblWarn.MouseUp += new MouseEventHandler(this.WorkFrm_MouseUp);
+
+            this.btnAgain.Visible=false;
             //读取位置
-            if (File.Exists(OperateIniFileHelper.localPath+ "\\config.ini"))    
+            if (File.Exists(OperateIniFileHelper.localPath+ "\\reminder_config.ini"))    
             {
                 var screenLocation = OperateIniFileHelper.ReadIniData("system", "location", "0,0", OperateIniFileHelper.localPath + "\\reminder_config.ini").Split(',');
                 if (!screenLocation[0].Equals("0") && !screenLocation[1].Equals("0"))
                     this.Location = new Point(Convert.ToInt32(screenLocation[0]), Convert.ToInt32(screenLocation[1]));
             }
-
             wrk_seconds = 0; 
 
             if (wrk_seconds >= 10)
@@ -65,8 +92,8 @@ namespace Reminder
             }
 
             lblWarn.Text = "注意坐姿";
-            this.BackColor = Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             lblWarn.ForeColor = Color.White;
+            this.btnAgain.Text = "再战5分钟";
 
             this.Opacity = 0.8;            
         }
@@ -160,6 +187,8 @@ namespace Reminder
         private void RestFrm_Rreset(object sender, EventArgs e)
         {
             wrk_m = wrk_minutes;
+            //重置计数
+            this.countdown = 0;
             this.Form1_Load(sender, e);
             this.Show();
             // 启动计时器，恢复计时
@@ -175,14 +204,47 @@ namespace Reminder
             {
                 this.BackColor = Color.Red;
                 lblWarn.ForeColor = Color.Yellow;
-                lblWarn.Text = "该休息了！";
-                int x = (Screen.PrimaryScreen.WorkingArea.Size.Width) / 2 - this.Width/2;
-                int y = (Screen.PrimaryScreen.WorkingArea.Size.Height) / 2 - this.Height/2;
+                lblWarn.Text = "该休息了!";
+                this.Move -= new System.EventHandler(this.WorkFrm_Move);
+                this.MouseUp -= new MouseEventHandler(this.WorkFrm_MouseUp);
+                this.MouseDown -= new MouseEventHandler(this.WorkFrm_MouseDown);
+                this.lblSecond.MouseDown -= new MouseEventHandler(this.WorkFrm_MouseDown);
+                this.lblMin.MouseDown -= new MouseEventHandler(this.WorkFrm_MouseDown);
+                this.label2.MouseDown -= new MouseEventHandler(this.WorkFrm_MouseDown);
+                this.label3.MouseDown -= new MouseEventHandler(this.WorkFrm_MouseDown);
+                this.lblWarn.MouseDown -= new MouseEventHandler(this.WorkFrm_MouseDown);
+
+                this.lblSecond.MouseMove -= new MouseEventHandler(this.WorkFrm_MouseMove);
+                this.lblMin.MouseMove -= new MouseEventHandler(this.WorkFrm_MouseMove);
+                this.label2.MouseMove -= new MouseEventHandler(this.WorkFrm_MouseMove);
+                this.label3.MouseMove -= new MouseEventHandler(this.WorkFrm_MouseMove);
+                this.lblWarn.MouseMove -= new MouseEventHandler(this.WorkFrm_MouseMove);
+
+                this.lblSecond.MouseUp -= new MouseEventHandler(this.WorkFrm_MouseUp);
+                this.lblMin.MouseUp -= new MouseEventHandler(this.WorkFrm_MouseUp);
+                this.label2.MouseUp -= new MouseEventHandler(this.WorkFrm_MouseUp);
+                this.label3.MouseUp -= new MouseEventHandler(this.WorkFrm_MouseUp);
+                this.lblWarn.MouseUp -= new MouseEventHandler(this.WorkFrm_MouseUp);
+
+
+
+                //再加5分钟
+                this.btnAgain.Visible = true;
+                this.btnAgain.Cursor = Cursors.Arrow;
+                this.Size = new Size(110, 70);
+                if(countdown>2)
+                {
+                    this.btnAgain.Text = "次数耗尽";
+                    this.btnAgain.Enabled=false;
+                }
+
+                int x = (Screen.PrimaryScreen.WorkingArea.Size.Width) / 2 - this.Width / 2;
+                int y = (Screen.PrimaryScreen.WorkingArea.Size.Height) / 2 - this.Height / 2;
                 Point p = new Point(x, y);
                 this.PointToScreen(p);
                 this.Location = p;
-            }         
-            
+            }
+
         }
 
         /// <summary>
@@ -257,6 +319,16 @@ namespace Reminder
             string locStr = string.Format("{0},{1}", this.Location.X, this.Location.Y);
             string path = Path.Combine(OperateIniFileHelper.localPath, "reminder_config.ini");
             OperateIniFileHelper.WriteIniData("system", "location", locStr, path);
+        }
+
+        private void btnAgain_Click(object sender, EventArgs e)
+        {
+            countdown += 1;
+            wrk_m = 5;
+            this.Form1_Load(sender, e);
+            this.Show();
+            // 启动计时器，恢复计时
+            timerWrk.Enabled = true;
         }
     }
 }

@@ -51,9 +51,9 @@ namespace Reminder
             sw = new Stopwatch();
             sw.Start();
             timerRst.Enabled = true;            
-            //this.TopMost = true;
+            this.TopMost = true;
            
-            //this.WindowState = FormWindowState.Maximized;
+            this.WindowState = FormWindowState.Maximized;
             int idx = new Random().Next(1, 5);
             picBox.Image= (Bitmap)Resources.ResourceManager.GetObject("gif0"+idx);
             picBox.Left = (this.ClientSize.Width - picBox.Width) / 2;
