@@ -208,6 +208,7 @@ namespace Reminder
                 this.Move -= new System.EventHandler(this.WorkFrm_Move);
                 this.MouseUp -= new MouseEventHandler(this.WorkFrm_MouseUp);
                 this.MouseDown -= new MouseEventHandler(this.WorkFrm_MouseDown);
+
                 this.lblSecond.MouseDown -= new MouseEventHandler(this.WorkFrm_MouseDown);
                 this.lblMin.MouseDown -= new MouseEventHandler(this.WorkFrm_MouseDown);
                 this.label2.MouseDown -= new MouseEventHandler(this.WorkFrm_MouseDown);
@@ -225,8 +226,6 @@ namespace Reminder
                 this.label2.MouseUp -= new MouseEventHandler(this.WorkFrm_MouseUp);
                 this.label3.MouseUp -= new MouseEventHandler(this.WorkFrm_MouseUp);
                 this.lblWarn.MouseUp -= new MouseEventHandler(this.WorkFrm_MouseUp);
-
-
 
                 //再加5分钟
                 this.btnAgain.Visible = true;
