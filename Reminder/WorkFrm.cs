@@ -94,6 +94,7 @@ namespace Reminder
             lblWarn.Text = "注意坐姿";
             lblWarn.ForeColor = Color.White;
             this.btnAgain.Text = "再战5分钟";
+            this.btnAgain.Enabled=true;
 
             this.Opacity = 0.8;            
         }

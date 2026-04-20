@@ -50,10 +50,12 @@ namespace Reminder
             }
             sw = new Stopwatch();
             sw.Start();
-            timerRst.Enabled = true;            
+            timerRst.Enabled = true;
+
+            // 窗体设置
             this.TopMost = true;
-           
             this.WindowState = FormWindowState.Maximized;
+
             int idx = new Random().Next(1, 5);
             picBox.Image= (Bitmap)Resources.ResourceManager.GetObject("gif0"+idx);
             picBox.Left = (this.ClientSize.Width - picBox.Width) / 2;
