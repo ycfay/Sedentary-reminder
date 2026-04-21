@@ -63,6 +63,12 @@
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="OperateIniFileHelper.cs" />
+    <Compile Include="UploadFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UploadFrm.Designer.cs">
+      <DependentUpon>UploadFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserActivityMonitor.cs" />
     <Compile Include="WinKeyBlocker.cs" />
     <Compile Include="WorkFrm.cs">
@@ -84,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UploadFrm.resx">
+      <DependentUpon>UploadFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkFrm.resx">
       <DependentUpon>WorkFrm.cs</DependentUpon>

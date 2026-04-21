@@ -177,7 +177,7 @@
             this.picBox.Location = new System.Drawing.Point(351, 322);
             this.picBox.Name = "picBox";
             this.picBox.Size = new System.Drawing.Size(300, 330);
-            this.picBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picBox.TabIndex = 13;
             this.picBox.TabStop = false;
             // 

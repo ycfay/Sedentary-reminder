@@ -6,7 +6,7 @@ import net from "net";
 import chalk from "chalk";
 import morgan from "morgan";
 import compression from "compression";
-import { handleImageRequest } from "./image_handler.mjs";
+import { handleLoadImage, handleUploadImage} from "./image_handler.mjs";
 
 const serverPort = 5180;
 
@@ -70,7 +70,11 @@ async function startServer() {
 
     // 返回库图片接口
     app.get("/image", (req, res) => {
-        handleImageRequest(req, res);
+        handleLoadImage(req, res);
+    });
+    // 上传图片
+    app.post("/upload", (req, res) => {
+        handleUploadImage(req, res);
     });
 
     /// 返回序列动画 怪物等

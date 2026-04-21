@@ -17,6 +17,7 @@ namespace Reminder
         {
             GlobalContextMenu.BackgroundImageLayout = ImageLayout.Center;
 
+            ToolStripMenuItem UploadToolStripMenuItem = new ToolStripMenuItem();
             ToolStripMenuItem MainToolStripMenuItem = new ToolStripMenuItem();
             ToolStripMenuItem AboutToolStripMenuItem = new ToolStripMenuItem();
             ToolStripMenuItem Exit_ToolStripMenuItem = new ToolStripMenuItem();
@@ -25,11 +26,19 @@ namespace Reminder
             // contextMenuStrip
             // 
             GlobalContextMenu.Items.AddRange(new ToolStripItem[] {
+            UploadToolStripMenuItem,
             MainToolStripMenuItem,
             AboutToolStripMenuItem,
             Exit_ToolStripMenuItem});
             GlobalContextMenu.Name = "contextMenuStrip";
             GlobalContextMenu.Size = new Size(181, 92);
+            // 
+            // 主窗体ToolStripMenuItem
+            // 
+            UploadToolStripMenuItem.Name = "MainToolStripMenuItem";
+            UploadToolStripMenuItem.Size = new Size(180, 22);
+            UploadToolStripMenuItem.Text = "上传图片";
+            UploadToolStripMenuItem.Click += UploadToolStripMenuItem_Click;
             // 
             // 主窗体ToolStripMenuItem
             // 
@@ -51,6 +60,11 @@ namespace Reminder
             Exit_ToolStripMenuItem.Size = new Size(180, 22);
             Exit_ToolStripMenuItem.Text = "退出";
             Exit_ToolStripMenuItem.Click += new EventHandler(ExitToolStripMenuItem_Click);
+        }
+        private static void UploadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UploadFrm uploadBox = new UploadFrm();
+            uploadBox.ShowDialog();
         }
         private static void MainToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -87,7 +87,7 @@ namespace Reminder
             if (jokeShow == "true")
             {
                 lblMotion.Visible = false;
-                LoadImage("https://t10.baidu.com/it/u=1316574177,294632491&fm=30&app=106&f=JPEG?w=312&h=208&s=0314ED230ABD4BA33E55B4CB0100C0A3");
+                LoadImage("http://43.156.184.19/image");
             }
             else
             {
