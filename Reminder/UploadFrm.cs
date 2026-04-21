@@ -65,10 +65,10 @@ namespace Reminder
                     // =========================
                     // 1️⃣ 添加普通参数 userId
                     // =========================
+                    var serialNumber = OperateIniFileHelper.ReadIniData("system", "serial", "", OperateIniFileHelper.localPath + "\\reminder_config.ini");
                     string param1 =
                         "--" + boundary + "\r\n" +
-                        "Content-Disposition: form-data; name=\"userId\"\r\n\r\n" +
-                        "123\r\n";
+                        "Content-Disposition: form-data; sn="+ serialNumber;
 
                     byte[] param1Bytes = Encoding.UTF8.GetBytes(param1);
                     requestStream.Write(param1Bytes, 0, param1Bytes.Length);
