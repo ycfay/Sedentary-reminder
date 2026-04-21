@@ -5,9 +5,15 @@ import cors from "cors";
 import net from "net";
 import chalk from "chalk";
 import morgan from "morgan";
+import compression from "compression";
+import { handleImageRequest } from "./image_handler.mjs";
 
-const serverPort = 55842;
+const serverPort = 5180;
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const targetDir = path.join(__dirname,"assets",
+);
 
 // 端口检查
 function checkPort(port) {
@@ -59,16 +65,12 @@ async function startServer() {
         next();
     });
 
-    // 返回 MLibrary 集合接口
-    app.get("/libraries", (req, res) => {
-        handleLibraries(libraries, req, res);
-    });
-
     // 发布静态资源
     app.use(express.static(targetDir));
+
     // 返回库图片接口
     app.get("/image", (req, res) => {
-        //handleLibraryImage(libraries, req, res);
+        handleImageRequest(req, res);
     });
 
     /// 返回序列动画 怪物等
