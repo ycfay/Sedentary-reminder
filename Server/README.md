@@ -3,13 +3,13 @@
 ```shell
 rm -rf yarn.lock  package-lock.json  README.md node_modules MapInfo.txt
 docker stop image-server && docker rm image-server
-docker rmi yc/image-node-app
-docker build -t yc/image-node-app:latest .
+docker rmi image-app
+docker build -t image-app:latest .
 ```
 
 ##### run container
 ```shell
-docker run -it --rm  --name image-server yc/mir2-node-app:latest
+docker run -it --rm  --name image-server image-app:latest
 
 ## snda
 docker run -d \
@@ -17,7 +17,7 @@ docker run -d \
     -p 5180:5180 \
     -v /root/assets:/app/assets \
     -v /etc/localtime:/etc/localtime:ro \
-    yc/image-node-app:latest
+    image-app:latest
 
 
 ##### access the container

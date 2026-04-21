@@ -44,8 +44,8 @@ namespace Reminder
         {
             try
             {
-                string url = "http://127.0.0.1:5180/upload";
-                //string url = "http://43.156.184.19/upload";
+                //string url = "http://127.0.0.1:5180/upload";
+                string url = "http://43.156.184.19/upload";
 
 
                 // 1. 创建请求
