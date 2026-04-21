@@ -46,6 +46,8 @@ namespace Reminder
 
             }
             ckBoxAutoStart.Checked = AutoStartHelper.IsAutoStartEnabled();
+            GlobalMenu.OnClick += MainToolStripMenuItem_Click;
+            notifyIcon.ContextMenuStrip = GlobalMenu.GlobalContextMenu;
 
         }
 
@@ -117,7 +119,7 @@ namespace Reminder
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            notifyIcon1.Visible = false;
+            notifyIcon.Visible = false;
             System.Environment.Exit(0);
         }
 

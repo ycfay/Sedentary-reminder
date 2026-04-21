@@ -42,6 +42,7 @@ namespace Reminder
         {
             this.Size = new Size(110, 40);
             this.BackColor = Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ContextMenuStrip = GlobalMenu.GlobalContextMenu;
 
             this.Move += new System.EventHandler(this.WorkFrm_Move);
             this.MouseUp += new MouseEventHandler(this.WorkFrm_MouseUp);

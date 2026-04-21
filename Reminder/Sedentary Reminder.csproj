@@ -54,6 +54,7 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="AutoStartHelper.cs" />
+    <Compile Include="GlobalMenu.cs" />
     <Compile Include="KeyboardBlocker.cs" />
     <Compile Include="MainFrm.cs">
       <SubType>Form</SubType>
@@ -112,14 +113,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="alarm_clock.ico" />
-    <Content Include="Alarm_clock_96px_1176926_easyicon.net.ico" />
-    <Content Include="appointment_reminder_stock_64px_43056_easyicon.net.ico" />
     <Content Include="asset\01.gif" />
     <Content Include="asset\02.gif" />
     <Content Include="asset\03.gif" />
     <Content Include="asset\04.gif" />
     <Content Include="asset\05.gif" />
-    <Content Include="ICO2.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="asset\sit_32.png" />
