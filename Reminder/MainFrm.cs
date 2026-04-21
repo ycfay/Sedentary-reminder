@@ -41,12 +41,21 @@ namespace Reminder
                 var lockWindow = OperateIniFileHelper.ReadIniData("system", "lockwindow", "False", OperateIniFileHelper.localPath + "\\reminder_config.ini").ToLower();
                 if (!String.IsNullOrEmpty(lockWindow))
                 {
-                    this.ckBoxLockWindow.Checked = Convert.ToBoolean(lockWindow);
+                    var locked = false;
+                    Boolean.TryParse(lockWindow, out locked);
+                    this.ckBoxLockWindow.Checked = locked;
                 }
                 var jokeShow = OperateIniFileHelper.ReadIniData("system", "joke", "False", OperateIniFileHelper.localPath + "\\reminder_config.ini").ToLower();
                 if (!String.IsNullOrEmpty(jokeShow))
+                { 
+                    var joke = false;
+                    Boolean.TryParse(jokeShow,out joke);
+                    this.chkJoke.Checked = joke;
+                }
+                var serialNumber = OperateIniFileHelper.ReadIniData("system", "serial", "", OperateIniFileHelper.localPath + "\\reminder_config.ini");
+                if (!String.IsNullOrEmpty(serialNumber))
                 {
-                    this.chkJoke.Checked = Convert.ToBoolean(jokeShow);
+                    this.lblSerial.Text= serialNumber;
                 }
 
             }

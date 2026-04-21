@@ -52,7 +52,7 @@
             this.lblSecond.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.lblSecond.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSecond.ForeColor = System.Drawing.Color.White;
-            this.lblSecond.Location = new System.Drawing.Point(77, 22);
+            this.lblSecond.Location = new System.Drawing.Point(78, 22);
             this.lblSecond.Name = "lblSecond";
             this.lblSecond.Size = new System.Drawing.Size(24, 18);
             this.lblSecond.TabIndex = 4;
@@ -67,7 +67,7 @@
             this.lblMin.BackColor = System.Drawing.Color.Transparent;
             this.lblMin.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMin.ForeColor = System.Drawing.Color.White;
-            this.lblMin.Location = new System.Drawing.Point(38, 22);
+            this.lblMin.Location = new System.Drawing.Point(35, 22);
             this.lblMin.Name = "lblMin";
             this.lblMin.Size = new System.Drawing.Size(24, 18);
             this.lblMin.TabIndex = 5;

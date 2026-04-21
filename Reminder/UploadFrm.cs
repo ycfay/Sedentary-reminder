@@ -50,59 +50,91 @@ namespace Reminder
         {
             try
             {
-                //string url = "http://127.0.0.1:5180/upload";
                 string url = "http://43.156.184.19/upload";
 
-
-                // 1. 创建请求
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "POST";
 
                 string boundary = "----WebKitFormBoundary" + DateTime.Now.Ticks.ToString("x");
                 request.ContentType = "multipart/form-data; boundary=" + boundary;
 
-                // 2. 组装请求体
-                Stream requestStream = request.GetRequestStream();
-
-                byte[] boundaryBytes = Encoding.UTF8.GetBytes("--" + boundary + "\r\n");
-
-                // 文件头
-                string header =
-                    "Content-Disposition: form-data; name=\"file\"; filename=\"" + Path.GetFileName(filePath) + "\"\r\n" +
-                    "Content-Type: application/octet-stream\r\n\r\n";
-
-                byte[] headerBytes = Encoding.UTF8.GetBytes(header);
-
-                // 写入 boundary + header
-                requestStream.Write(boundaryBytes, 0, boundaryBytes.Length);
-                requestStream.Write(headerBytes, 0, headerBytes.Length);
-
-                // 写入文件内容
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                using (Stream requestStream = request.GetRequestStream())
                 {
-                    byte[] buffer = new byte[4096];
-                    int bytesRead;
+                    byte[] boundaryBytes = Encoding.UTF8.GetBytes("--" + boundary + "\r\n");
 
-                    while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
+                    // =========================
+                    // 1️⃣ 添加普通参数 userId
+                    // =========================
+                    string param1 =
+                        "--" + boundary + "\r\n" +
+                        "Content-Disposition: form-data; name=\"userId\"\r\n\r\n" +
+                        "123\r\n";
+
+                    byte[] param1Bytes = Encoding.UTF8.GetBytes(param1);
+                    requestStream.Write(param1Bytes, 0, param1Bytes.Length);
+
+                    // =========================
+                    // 2️⃣ 添加普通参数 type
+                    // =========================
+                    string param2 =
+                        "--" + boundary + "\r\n" +
+                        "Content-Disposition: form-data; name=\"type\"\r\n\r\n" +
+                        "image\r\n";
+
+                    byte[] param2Bytes = Encoding.UTF8.GetBytes(param2);
+                    requestStream.Write(param2Bytes, 0, param2Bytes.Length);
+
+                    // =========================
+                    // 3️⃣ 文件头
+                    // =========================
+                    string header =
+                        "--" + boundary + "\r\n" +
+                        "Content-Disposition: form-data; name=\"file\"; filename=\"" + Path.GetFileName(filePath) + "\"\r\n" +
+                        "Content-Type: application/octet-stream\r\n\r\n";
+
+                    byte[] headerBytes = Encoding.UTF8.GetBytes(header);
+
+                    requestStream.Write(headerBytes, 0, headerBytes.Length);
+
+                    // =========================
+                    // 4️⃣ 文件内容（流式上传）
+                    // =========================
+                    using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                     {
-                        requestStream.Write(buffer, 0, bytesRead);
+                        byte[] buffer = new byte[4096];
+                        int bytesRead;
+
+                        while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
+                        {
+                            requestStream.Write(buffer, 0, bytesRead);
+                        }
                     }
+
+                    // =========================
+                    // 5️⃣ 结束 boundary
+                    // =========================
+                    byte[] endBytes = Encoding.UTF8.GetBytes("\r\n--" + boundary + "--\r\n");
+                    requestStream.Write(endBytes, 0, endBytes.Length);
                 }
 
-                // 结束 boundary
-                byte[] endBytes = Encoding.UTF8.GetBytes("\r\n--" + boundary + "--\r\n");
-                requestStream.Write(endBytes, 0, endBytes.Length);
-
-                requestStream.Close();
-
-                // 3. 获取响应
+                // =========================
+                // 6️⃣ 获取响应
+                // =========================
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
                 using (StreamReader reader = new StreamReader(response.GetResponseStream()))
                 {
                     string result = reader.ReadToEnd();
-                    if(result.Contains("true"))
+
+                    if (result.Contains("success"))
+                    {
                         MessageBox.Show("上传成功,等待在屏幕锁定期间播放图片！");
+                    }
+                    else
+                    {
+                        MessageBox.Show("上传返回：" + result);
+                    }
+
                     this.Close();
                 }
             }

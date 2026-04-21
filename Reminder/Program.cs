@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -22,6 +24,11 @@ namespace Reminder
                 {
                     ExisFlag = true;
                 }
+            }
+            var serialNumber = OperateIniFileHelper.ReadIniData("system", "serial", "", OperateIniFileHelper.localPath + "\\reminder_config.ini");
+            if (String.IsNullOrEmpty(serialNumber))
+            {
+                OperateIniFileHelper.WriteIniData("system", "serial", GlobalMenu.GetRandomSerial(), Path.Combine(OperateIniFileHelper.localPath, "reminder_config.ini"));
             }
 
             if (ExisFlag)//防止程序二次运行

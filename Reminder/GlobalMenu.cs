@@ -12,7 +12,6 @@ namespace Reminder
         public static ContextMenuStrip GlobalContextMenu = new ContextMenuStrip();
         public static event EventHandler OnClick;
 
-
         static GlobalMenu()
         {
             GlobalContextMenu.BackgroundImageLayout = ImageLayout.Center;
@@ -78,6 +77,17 @@ namespace Reminder
         {
             AboutBox aboutBox = new AboutBox();
             aboutBox.ShowDialog();
+        }
+        public static string GetRandomSerial(int length = 5)
+        {
+            const string chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // 排除易混淆字符如 0, O, 1, I
+            var random = new Random();
+            var result = new char[length];
+            for (int i = 0; i < length; i++)
+            {
+                result[i] = chars[random.Next(chars.Length)];
+            }
+            return new string(result);
         }
     }
 }
