@@ -1,6 +1,7 @@
 import path from 'path';
-import { readdir, mkdir, writeFile } from 'fs/promises';
+import { readdir, mkdir, readFile, writeFile } from 'fs/promises';
 import { createReadStream } from 'fs';
+import crypto from 'crypto';
 
 
 /**
@@ -157,39 +158,66 @@ async function getNextIndex(assetsPath) {
   return max + 1;
 }
 
+function getFileHash(buffer) {
+  return crypto.createHash('md5').update(buffer).digest('hex');
+}
 /**
- * 上传图片处理
- */
+ * 查重函数
+*/
+async function findExistingFileByHash(assetsPath, hash) {
+  const files = await readdir(assetsPath);
+
+  for (const file of files) {
+    const filePath = path.join(assetsPath, file);
+
+    const data = await readFile(filePath);
+    const fileHash = getFileHash(data);
+
+    if (fileHash === hash) {
+      return file;
+    }
+  }
+
+  return null;
+}
 export async function handleUploadImage(req, res) {
   try {
     const assetsPath = path.join(process.cwd(), 'assets');
-
-    // 确保目录存在
     await mkdir(assetsPath, { recursive: true });
-
-    // 解析上传文件
     const { ext, buffer } = await parseMultipart(req);
-
-    // 校验格式
     if (!/\.(jpg|jpeg|png|gif|webp)$/i.test(ext)) {
       res.writeHead(400);
       return res.end('Invalid file type');
     }
 
-    // 获取文件名（max + 1）
+    // ⭐ 1. 计算 hash
+    const hash = getFileHash(buffer);
+
+    // ⭐ 2. 查重
+    const existingFile = await findExistingFileByHash(assetsPath, hash);
+
+    if (existingFile) {
+      return res.end(JSON.stringify({
+        success: true,
+        duplicate: true,
+        filename: existingFile,
+        url: `/assets/${existingFile}`,
+      }));
+    }
+
+    // ⭐ 3. 正常生成新文件
     let index = await getNextIndex(assetsPath);
 
-    let filePath;
     let filename;
+    let filePath;
 
-    // 简单防并发冲突（重试机制）
     for (let i = 0; i < 5; i++) {
       filename = `${index}${ext}`;
       filePath = path.join(assetsPath, filename);
 
       try {
         await writeFile(filePath, buffer, { flag: 'wx' });
-        break; // 写入成功
+        break;
       } catch (err) {
         if (err.code === 'EEXIST') {
           index++;
@@ -199,13 +227,13 @@ export async function handleUploadImage(req, res) {
       }
     }
 
-    // 返回图片
     res.writeHead(200, {
       'Content-Type': 'application/json',
     });
 
     res.end(JSON.stringify({
       success: true,
+      duplicate: false,
       filename,
       url: `/assets/${filename}`,
     }));
