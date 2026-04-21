@@ -38,10 +38,15 @@ namespace Reminder
                 {
                     this.trackBar.Value = Convert.ToInt32(opacity);
                 }
-                var lockWindow = OperateIniFileHelper.ReadIniData("system", "lockwindow", "False", OperateIniFileHelper.localPath + "\\reminder_config.ini");
-                if (!String.IsNullOrEmpty(opacity))
+                var lockWindow = OperateIniFileHelper.ReadIniData("system", "lockwindow", "False", OperateIniFileHelper.localPath + "\\reminder_config.ini").ToLower();
+                if (!String.IsNullOrEmpty(lockWindow))
                 {
                     this.ckBoxLockWindow.Checked = Convert.ToBoolean(lockWindow);
+                }
+                var jokeShow = OperateIniFileHelper.ReadIniData("system", "joke", "False", OperateIniFileHelper.localPath + "\\reminder_config.ini").ToLower();
+                if (!String.IsNullOrEmpty(jokeShow))
+                {
+                    this.chkJoke.Checked = Convert.ToBoolean(jokeShow);
                 }
 
             }
@@ -100,7 +105,7 @@ namespace Reminder
             OperateIniFileHelper.WriteIniData("system", "timeconfig", cstr, path);
             OperateIniFileHelper.WriteIniData("system", "opacity", this.trackBar.Value.ToString(), path);
             OperateIniFileHelper.WriteIniData("system", "lockwindow", this.ckBoxLockWindow.Checked.ToString(), path);
-
+            OperateIniFileHelper.WriteIniData("system", "joke", this.chkJoke.Checked.ToString(), path);
         }
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {            

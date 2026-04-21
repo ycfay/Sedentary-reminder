@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
@@ -36,7 +37,33 @@ namespace Reminder
             this.rst_m2 = rst_minutes;
             this.input_flag = input_flag;
         }
-        
+        public void LoadImage(string url)
+        {
+            WebClient client = new WebClient();
+            // 注册下载完成事件
+            client.DownloadDataCompleted += (s, e) =>
+            {
+                try
+                {
+                    if (e.Error == null)
+                    {
+                        byte[] data = e.Result;
+                        using (MemoryStream ms = new MemoryStream(data))
+                        {
+                            picBox.Image = Image.FromStream(ms);
+                            picBox.Left = (this.ClientSize.Width - picBox.Width) / 2;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("图片解析失败: " + ex.Message);
+                }
+            };
+            // 开始异步下载
+            client.DownloadDataAsync(new Uri(url));
+        }
+
         private void RestFrm_Load(object sender, EventArgs e)
         {
            
@@ -56,11 +83,22 @@ namespace Reminder
             this.TopMost = true;
             this.WindowState = FormWindowState.Maximized;
 
-            int idx = new Random().Next(1, 5);
-            picBox.Image= (Bitmap)Resources.ResourceManager.GetObject("gif0"+idx);
-            picBox.Left = (this.ClientSize.Width - picBox.Width) / 2;
-            lblMotion.Text = Resources.ResourceManager.GetString("str0" + idx);
-            lblMotion.Left = (this.ClientSize.Width - lblMotion.Width) / 2;
+            var jokeShow = OperateIniFileHelper.ReadIniData("system", "joke", "False", OperateIniFileHelper.localPath + "\\reminder_config.ini").ToLower();
+            if (jokeShow == "true")
+            {
+                lblMotion.Visible = false;
+                LoadImage("https://t10.baidu.com/it/u=1316574177,294632491&fm=30&app=106&f=JPEG?w=312&h=208&s=0314ED230ABD4BA33E55B4CB0100C0A3");
+            }
+            else
+            {
+                int idx = new Random().Next(1, 5);
+                picBox.Image = (Bitmap)Resources.ResourceManager.GetObject("gif0" + idx);
+                picBox.Left = (this.ClientSize.Width - picBox.Width) / 2;
+                lblMotion.Visible=true;
+                lblMotion.Text = Resources.ResourceManager.GetString("str0" + idx);
+                lblMotion.Left = (this.ClientSize.Width - lblMotion.Width) / 2;
+
+            }
 
             var opacity = OperateIniFileHelper.ReadIniData("system", "opacity", "7", OperateIniFileHelper.localPath + "\\reminder_config.ini");
             if (!String.IsNullOrEmpty(opacity))

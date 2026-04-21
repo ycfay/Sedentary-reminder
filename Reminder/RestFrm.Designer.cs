@@ -174,7 +174,6 @@
             // 
             // picBox
             // 
-            this.picBox.Image = global::Reminder.Properties.Resources.gif01;
             this.picBox.Location = new System.Drawing.Point(351, 322);
             this.picBox.Name = "picBox";
             this.picBox.Size = new System.Drawing.Size(300, 330);

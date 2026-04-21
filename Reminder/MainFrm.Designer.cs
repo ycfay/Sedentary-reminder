@@ -46,6 +46,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.trackBar = new System.Windows.Forms.TrackBar();
             this.ckBoxLockWindow = new System.Windows.Forms.CheckBox();
+            this.chkJoke = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numWrkTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRstTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
@@ -84,7 +85,7 @@
             this.btn_start.BackColor = System.Drawing.Color.Transparent;
             this.btn_start.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.btn_start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_start.Location = new System.Drawing.Point(62, 234);
+            this.btn_start.Location = new System.Drawing.Point(62, 256);
             this.btn_start.Name = "btn_start";
             this.btn_start.Size = new System.Drawing.Size(75, 23);
             this.btn_start.TabIndex = 11;
@@ -187,7 +188,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(27, 196);
+            this.label7.Location = new System.Drawing.Point(27, 218);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 12);
             this.label7.TabIndex = 21;
@@ -195,7 +196,7 @@
             // 
             // trackBar
             // 
-            this.trackBar.Location = new System.Drawing.Point(99, 192);
+            this.trackBar.Location = new System.Drawing.Point(99, 214);
             this.trackBar.Minimum = 1;
             this.trackBar.Name = "trackBar";
             this.trackBar.Size = new System.Drawing.Size(104, 45);
@@ -212,12 +213,23 @@
             this.ckBoxLockWindow.Text = "休息时自动锁定屏幕";
             this.ckBoxLockWindow.UseVisualStyleBackColor = true;
             // 
+            // chkJoke
+            // 
+            this.chkJoke.ForeColor = System.Drawing.Color.Green;
+            this.chkJoke.Location = new System.Drawing.Point(29, 192);
+            this.chkJoke.Name = "chkJoke";
+            this.chkJoke.Size = new System.Drawing.Size(144, 16);
+            this.chkJoke.TabIndex = 24;
+            this.chkJoke.Text = "开启每日一笑 😀";
+            this.chkJoke.UseVisualStyleBackColor = true;
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(213, 265);
+            this.ClientSize = new System.Drawing.Size(205, 290);
+            this.Controls.Add(this.chkJoke);
             this.Controls.Add(this.ckBoxLockWindow);
             this.Controls.Add(this.btn_start);
             this.Controls.Add(this.trackBar);
@@ -268,5 +280,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TrackBar trackBar;
         private System.Windows.Forms.CheckBox ckBoxLockWindow;
+        private System.Windows.Forms.CheckBox chkJoke;
     }
 }
