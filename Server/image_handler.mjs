@@ -3,7 +3,6 @@ import { readdir, mkdir, readFile, writeFile } from 'fs/promises';
 import { createReadStream } from 'fs';
 import crypto from 'crypto';
 
-
 /**
  * 处理 libraries 相关的请求
  * @param {Array} libraries - 库文件数组
@@ -32,7 +31,7 @@ async function loadImages(assetsPath) {
   if (cachedImages && (now - lastLoadTime < CACHE_TTL)) {
     return cachedImages;
   }
-  const files = await fs.readdir(assetsPath);
+  const files = await readdir(assetsPath);
   const imageFiles = files.filter(file => IMAGE_REGEX.test(file));
   cachedImages = imageFiles;
   lastLoadTime = now;
