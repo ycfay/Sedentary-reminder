@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>ICO2.ico</ApplicationIcon>
+    <ApplicationIcon>alarm_clock.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -111,6 +111,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="alarm_clock.ico" />
     <Content Include="Alarm_clock_96px_1176926_easyicon.net.ico" />
     <Content Include="appointment_reminder_stock_64px_43056_easyicon.net.ico" />
     <Content Include="asset\01.gif" />
