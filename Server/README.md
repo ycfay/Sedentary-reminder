@@ -23,6 +23,7 @@ docker run -d \
 ##### access the container
 ```shell
 docker exec -it mir2-server /bin/sh
+ILmerge /ndebug /target:winexe /out:newApp.exe /log F:\t_code\co\dm23\Sedentary-reminder\Reminder\bin\Debug\Reminder.exe F:\t_code\co\dm23\Sedentary-reminder\Reminder\bin\Debug\Magick.NET-Q16-AnyCPU.dll F:\t_code\co\dm23\Sedentary-reminder\Reminder\bin\Debug\Magick.NET.Core.dll
 ```
 
 

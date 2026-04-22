@@ -35,6 +35,12 @@
     <ApplicationIcon>alarm_clock.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Magick.NET-Q16-AnyCPU, Version=8.6.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magick.NET-Q16-AnyCPU.8.6.1\lib\net20\Magick.NET-Q16-AnyCPU.dll</HintPath>
+    </Reference>
+    <Reference Include="Magick.NET.Core, Version=8.6.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magick.NET.Core.8.6.1\lib\net20\Magick.NET.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,6 +61,7 @@
     </Compile>
     <Compile Include="AutoStartHelper.cs" />
     <Compile Include="GlobalMenu.cs" />
+    <Compile Include="ImageHelper.cs" />
     <Compile Include="KeyboardBlocker.cs" />
     <Compile Include="MainFrm.cs">
       <SubType>Form</SubType>
@@ -63,6 +70,12 @@
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="OperateIniFileHelper.cs" />
+    <Compile Include="TestFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestFrm.Designer.cs">
+      <DependentUpon>TestFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UploadFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +104,9 @@
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TestFrm.resx">
+      <DependentUpon>TestFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UploadFrm.resx">
       <DependentUpon>UploadFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,6 +126,7 @@
     <EmbeddedResource Include="RestFrm.resx">
       <DependentUpon>RestFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
