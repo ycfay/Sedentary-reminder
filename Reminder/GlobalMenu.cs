@@ -25,8 +25,8 @@ namespace Reminder
             // contextMenuStrip
             // 
             GlobalContextMenu.Items.AddRange(new ToolStripItem[] {
-            UploadToolStripMenuItem,
             MainToolStripMenuItem,
+            UploadToolStripMenuItem,
             AboutToolStripMenuItem,
             Exit_ToolStripMenuItem});
             GlobalContextMenu.Name = "contextMenuStrip";
