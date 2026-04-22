@@ -50,7 +50,8 @@ namespace Reminder
         {
             try
             {
-                string url = "http://43.156.184.19/upload";
+                //string url = "http://43.156.184.19/upload";
+                string url = "http://127.0.0.1:5180/upload";
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "POST";
@@ -66,9 +67,12 @@ namespace Reminder
                     // 1️⃣ 添加普通参数 userId
                     // =========================
                     var serialNumber = OperateIniFileHelper.ReadIniData("system", "serial", "", OperateIniFileHelper.localPath + "\\reminder_config.ini");
+
+
                     string param1 =
                         "--" + boundary + "\r\n" +
-                        "Content-Disposition: form-data; sn="+ serialNumber;
+                        "Content-Disposition: form-data; name=\"sn\"\r\n\r\n" +
+                        serialNumber + "\r\n";
 
                     byte[] param1Bytes = Encoding.UTF8.GetBytes(param1);
                     requestStream.Write(param1Bytes, 0, param1Bytes.Length);

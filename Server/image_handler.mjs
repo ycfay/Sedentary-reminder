@@ -1,5 +1,5 @@
 import path from 'path';
-import { readdir, mkdir, readFile, writeFile } from 'fs/promises';
+import { access, readdir, mkdir, readFile, writeFile } from 'fs/promises';
 import { createReadStream } from 'fs';
 import crypto from 'crypto';
 
@@ -38,15 +38,28 @@ async function loadImages(assetsPath) {
   return imageFiles;
 }
 
+async function resolveAssetsPath(sn) {
+  const basePath = path.join(process.cwd(), 'assets');
+  const snPath = path.join(basePath, sn || '');
+
+  try {
+    // 尝试访问 sn 目录
+    await access(snPath);
+    return snPath;
+  } catch {
+    // 不存在就回退
+    return basePath;
+  }
+}
+
 /**
  * 随机返回 assets 目录图片
  */
 export async function handleLoadImage(req, res) {
   try {
-    const assetsPath = path.join(process.cwd(), 'assets');
-
+    const sn = req.query.sn;
+    const assetsPath =await resolveAssetsPath(sn);
     const imageFiles = await loadImages(assetsPath);
-
     if (!imageFiles.length) {
       res.writeHead(404, { 'Content-Type': 'text/plain' });
       return res.end('No images found');
@@ -92,6 +105,7 @@ export async function handleLoadImage(req, res) {
 /**
  * 解析 multipart/form-data（简化版，仅支持单文件）
  */
+
 function parseMultipart(req) {
   return new Promise((resolve, reject) => {
     const contentType = req.headers['content-type'] || '';
@@ -104,34 +118,52 @@ function parseMultipart(req) {
     const boundary = '--' + boundaryMatch[1];
     let data = Buffer.alloc(0);
 
-    req.on('data', chunk => {
-      data = Buffer.concat([data, chunk]);
-    });
+    req.on('data', chunk => { data = Buffer.concat([data, chunk]); });
 
     req.on('end', () => {
       const parts = data.toString('binary').split(boundary);
 
+      let fileBuffer = null;
+      let ext = '';
+      const fields = {};
+
       for (let part of parts) {
-        if (part.includes('Content-Disposition')) {
-          const match = part.match(/filename="(.+?)"/);
-          if (!match) continue;
+        if (!part.includes('Content-Disposition')) continue;
 
-          const filename = match[1];
-          const ext = path.extname(filename).toLowerCase();
+        const nameMatch = part.match(/name="(.+?)"/);
+        if (!nameMatch) continue;
 
-          const start = part.indexOf('\r\n\r\n') + 4;
-          const end = part.lastIndexOf('\r\n');
+        const fieldName = nameMatch[1];
 
-          const fileBuffer = Buffer.from(
-            part.substring(start, end),
-            'binary'
-          );
+        const start = part.indexOf('\r\n\r\n') + 4;
+        const end = part.lastIndexOf('\r\n');
 
-          return resolve({ ext, buffer: fileBuffer });
+        const content = part.substring(start, end);
+
+        // ⭐ 文件
+        const fileMatch = part.match(/filename="(.+?)"/);
+
+        if (fileMatch) {
+          const filename = fileMatch[1];
+          ext = path.extname(filename).toLowerCase();
+
+          fileBuffer = Buffer.from(content, 'binary');
+        }
+        else {
+          // ⭐ 普通字段
+          fields[fieldName] = content.trim();
         }
       }
 
-      reject(new Error('No file found'));
+      if (!fileBuffer) {
+        return reject(new Error('No file found'));
+      }
+
+      resolve({
+        ext,
+        buffer: fileBuffer,
+        fields
+      });
     });
 
     req.on('error', reject);
@@ -181,9 +213,10 @@ async function findExistingFileByHash(assetsPath, hash) {
 }
 export async function handleUploadImage(req, res) {
   try {
-    const assetsPath = path.join(process.cwd(), 'assets');
+    const { ext, buffer, fields } = await parseMultipart(req);
+    const assetsPath = path.join(process.cwd(), 'assets/'+fields.sn);
     await mkdir(assetsPath, { recursive: true });
-    const { ext, buffer } = await parseMultipart(req);
+
     if (!/\.(jpg|jpeg|png|gif|webp)$/i.test(ext)) {
       res.writeHead(400);
       return res.end('Invalid file type');

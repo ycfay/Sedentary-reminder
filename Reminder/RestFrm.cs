@@ -40,6 +40,12 @@ namespace Reminder
         public void LoadImage(string url)
         {
             WebClient client = new WebClient();
+
+            var serialNumber = OperateIniFileHelper.ReadIniData("system","serial","",OperateIniFileHelper.localPath + "\\reminder_config.ini");
+
+            // ✅ 拼接参数（注意编码）
+            string finalUrl = url + "?sn=" + Uri.EscapeDataString(serialNumber);
+
             // 注册下载完成事件
             client.DownloadDataCompleted += (s, e) =>
             {
@@ -61,7 +67,7 @@ namespace Reminder
                 }
             };
             // 开始异步下载
-            client.DownloadDataAsync(new Uri(url));
+            client.DownloadDataAsync(new Uri(finalUrl));
         }
 
         private void RestFrm_Load(object sender, EventArgs e)
