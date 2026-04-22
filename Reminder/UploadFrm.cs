@@ -32,13 +32,9 @@ namespace Reminder
                         return;
 
                     filePath = dialog.FileName;
-                    using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-                    {
-                        using (var img = Image.FromStream(fs))
-                        {
-                            picBox.Image = new Bitmap(img);
-                        }
-                    }
+                    byte[] data = File.ReadAllBytes(filePath);
+                    picBox.Image = ImageHelper.LoadImageAuto(data);
+
                 }
             }
             catch {
