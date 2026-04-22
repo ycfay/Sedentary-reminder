@@ -57,7 +57,7 @@ async function startServer() {
     app.use(compression());
 
     // 解析 JSON 请求体，限制大小为 5MB
-    app.use(express.json({ limit: "5mb" }));
+    app.use(express.json({ limit: "8mb" }));
 
     // 中间件：把连续斜杠替换为单斜杠
     app.use((req, res, next) => {
