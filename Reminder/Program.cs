@@ -40,7 +40,7 @@ namespace Reminder
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new TestFrm());
+                Application.Run(new MainFrm());
             }
            
         }

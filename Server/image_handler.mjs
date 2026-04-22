@@ -2,6 +2,7 @@ import path from 'path';
 import { access, readdir, mkdir, readFile, writeFile } from 'fs/promises';
 import { createReadStream } from 'fs';
 import crypto from 'crypto';
+import sharp from 'sharp';
 
 /**
  * 处理 libraries 相关的请求
@@ -58,7 +59,7 @@ async function resolveAssetsPath(sn) {
 export async function handleLoadImage(req, res) {
   try {
     const sn = req.query.sn;
-    const assetsPath =await resolveAssetsPath(sn);
+    const assetsPath = await resolveAssetsPath(sn);
     const imageFiles = await loadImages(assetsPath);
     if (!imageFiles.length) {
       res.writeHead(404, { 'Content-Type': 'text/plain' });
@@ -214,7 +215,7 @@ async function findExistingFileByHash(assetsPath, hash) {
 export async function handleUploadImage(req, res) {
   try {
     const { ext, buffer, fields } = await parseMultipart(req);
-    const assetsPath = path.join(process.cwd(), 'assets/'+fields.sn);
+    const assetsPath = path.join(process.cwd(), 'assets/' + fields.sn);
     await mkdir(assetsPath, { recursive: true });
 
     if (!/\.(jpg|jpeg|png|gif|webp)$/i.test(ext)) {
@@ -222,8 +223,20 @@ export async function handleUploadImage(req, res) {
       return res.end('Invalid file type');
     }
 
-    // ⭐ 1. 计算 hash
-    const hash = getFileHash(buffer);
+    // ⭐ 转换 WebP
+    let webpBuffer = buffer;
+    let outputExt = ext;
+
+    if (ext !== '.webp') {
+      webpBuffer = await sharp(buffer)
+        .webp({ quality: 80 })
+        .toBuffer();
+
+      outputExt = '.webp';
+    }
+
+    // ⭐ hash（基于转换后）
+    const hash = getFileHash(webpBuffer);
 
     // ⭐ 2. 查重
     const existingFile = await findExistingFileByHash(assetsPath, hash);
@@ -244,11 +257,12 @@ export async function handleUploadImage(req, res) {
     let filePath;
 
     for (let i = 0; i < 5; i++) {
-      filename = `${index}${ext}`;
-      filePath = path.join(assetsPath, filename);
-
       try {
-        await writeFile(filePath, buffer, { flag: 'wx' });
+        // ⭐ 写文件名
+        filename = `${index}${outputExt}`;
+        filePath = path.join(assetsPath, filename);
+        // ⭐ 写入文件
+        await writeFile(filePath, webpBuffer, { flag: 'wx' });
         break;
       } catch (err) {
         if (err.code === 'EEXIST') {
