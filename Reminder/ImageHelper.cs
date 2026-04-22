@@ -13,13 +13,10 @@ namespace Reminder
                 return ConvertWebpToDisplayImage(data);
             }
 
-            using (var ms = new MemoryStream(data))
-            {
-                using (var img = Image.FromStream(ms))
-                {
-                    return new Bitmap(img);
-                }
-            }
+            var ms = new MemoryStream(data);
+
+            // ⭐ 不要 using，让 Image 自己管理
+            return Image.FromStream(ms);
         }
         public static bool IsWebp(byte[] data)
         {
