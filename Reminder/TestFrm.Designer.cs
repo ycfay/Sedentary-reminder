@@ -37,7 +37,7 @@
             this.picBox.Location = new System.Drawing.Point(12, 12);
             this.picBox.Name = "picBox";
             this.picBox.Size = new System.Drawing.Size(267, 231);
-            this.picBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picBox.TabIndex = 0;
             this.picBox.TabStop = false;
             // 
@@ -52,6 +52,7 @@
             this.Name = "TestFrm";
             this.ShowIcon = false;
             this.Text = "TestFrm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.TestFrm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).EndInit();
             this.ResumeLayout(false);

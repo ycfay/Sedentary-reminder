@@ -228,8 +228,11 @@ export async function handleUploadImage(req, res) {
     let outputExt = ext;
 
     if (ext !== '.webp') {
-      webpBuffer = await sharp(buffer)
-        .webp({ quality: 80 })
+      webpBuffer = await sharp(buffer, { animated: true })
+        .webp({
+          quality: 80,
+          effort: 4
+        })
         .toBuffer();
 
       outputExt = '.webp';

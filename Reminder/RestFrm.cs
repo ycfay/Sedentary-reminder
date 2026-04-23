@@ -58,7 +58,8 @@ namespace Reminder
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("图片解析失败: " + ex.Message);
+                    File.AppendAllText($"Log-{DateTime.Now.ToString("yyyyMM")}.txt", $"LoadImage:{ex.Message}" + Environment.NewLine);
+
                 }
             };
             // 开始异步下载
