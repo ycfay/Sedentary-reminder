@@ -31,6 +31,7 @@ namespace Reminder
             Exit_ToolStripMenuItem});
             GlobalContextMenu.Name = "contextMenuStrip";
             GlobalContextMenu.Size = new Size(181, 92);
+            GlobalContextMenu.DoubleClick += MainToolStripMenuItem_Click;
             // 
             // 主窗体ToolStripMenuItem
             // 
@@ -60,6 +61,7 @@ namespace Reminder
             Exit_ToolStripMenuItem.Text = "退出";
             Exit_ToolStripMenuItem.Click += new EventHandler(ExitToolStripMenuItem_Click);
         }
+
         private static void UploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UploadFrm uploadBox = new UploadFrm();

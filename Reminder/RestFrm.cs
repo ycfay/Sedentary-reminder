@@ -60,6 +60,7 @@ namespace Reminder
                 {
                     File.AppendAllText($"Log-{DateTime.Now.ToString("yyyyMM")}.txt", $"LoadImage:{ex.Message}" + Environment.NewLine);
                     picBox.Image = (Bitmap)Resources.default_s_large;
+                    picBox.Left = (this.ClientSize.Width - picBox.Width) / 2;
                 }
             };
             // 开始异步下载
