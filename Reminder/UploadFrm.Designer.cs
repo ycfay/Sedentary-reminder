@@ -33,11 +33,13 @@
             this.btnUpload = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.picLoad = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoad)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -52,6 +54,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.picLoad);
             this.splitContainer1.Panel2.Controls.Add(this.btnUpload);
             this.splitContainer1.Panel2.Controls.Add(this.btnSelect);
             this.splitContainer1.Size = new System.Drawing.Size(425, 282);
@@ -71,7 +74,7 @@
             // 
             // btnUpload
             // 
-            this.btnUpload.Location = new System.Drawing.Point(26, 232);
+            this.btnUpload.Location = new System.Drawing.Point(27, 232);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(75, 23);
             this.btnUpload.TabIndex = 1;
@@ -81,7 +84,7 @@
             // 
             // btnSelect
             // 
-            this.btnSelect.Location = new System.Drawing.Point(26, 29);
+            this.btnSelect.Location = new System.Drawing.Point(27, 29);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(75, 23);
             this.btnSelect.TabIndex = 0;
@@ -94,6 +97,17 @@
             this.backgroundWorker.WorkerReportsProgress = true;
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            // 
+            // picLoad
+            // 
+            this.picLoad.Image = global::Reminder.Properties.Resources.loading;
+            this.picLoad.Location = new System.Drawing.Point(8, 106);
+            this.picLoad.Name = "picLoad";
+            this.picLoad.Size = new System.Drawing.Size(113, 85);
+            this.picLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLoad.TabIndex = 2;
+            this.picLoad.TabStop = false;
+            this.picLoad.Visible = false;
             // 
             // UploadFrm
             // 
@@ -112,6 +126,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoad)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -123,5 +138,6 @@
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Button btnUpload;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private System.Windows.Forms.PictureBox picLoad;
     }
 }

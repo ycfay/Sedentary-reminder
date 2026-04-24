@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reminder.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -48,6 +49,8 @@ namespace Reminder
             btnUpload.Text = "上传中...";
             btnUpload.Enabled = false;
             btnSelect.Enabled = false;
+            picLoad.Visible = true;
+
         }
 
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -140,6 +143,8 @@ namespace Reminder
             var result= e.Result.ToString();
             if (result.Contains("success"))
             {
+                picLoad.Visible = false;
+                picBox.Image = null;
                 MessageBox.Show("上传成功,等待在屏幕锁定期间播放图片！");
                 this.Close();
             }
@@ -147,7 +152,8 @@ namespace Reminder
             {
                 MessageBox.Show("上传返回：" + result);
             }
-            btnUpload.Text = "上传图片";
+            picLoad.Visible = false;
+            btnUpload.Text = "上传图片";            
             btnUpload.Enabled = true;
             btnSelect.Enabled = true;
         }

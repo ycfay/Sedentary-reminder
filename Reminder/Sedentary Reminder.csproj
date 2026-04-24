@@ -145,6 +145,7 @@
     <Content Include="asset\04.gif" />
     <Content Include="asset\05.gif" />
     <Content Include="asset\default_s_large.gif" />
+    <Content Include="asset\loading.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="asset\sit_32.png" />
