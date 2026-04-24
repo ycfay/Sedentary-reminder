@@ -63,6 +63,16 @@ namespace Reminder.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap default_s_large {
+            get {
+                object obj = ResourceManager.GetObject("default_s_large", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap gif01 {
             get {
                 object obj = ResourceManager.GetObject("gif01", resourceCulture);

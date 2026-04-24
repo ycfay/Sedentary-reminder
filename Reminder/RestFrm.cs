@@ -59,7 +59,7 @@ namespace Reminder
                 catch (Exception ex)
                 {
                     File.AppendAllText($"Log-{DateTime.Now.ToString("yyyyMM")}.txt", $"LoadImage:{ex.Message}" + Environment.NewLine);
-
+                    picBox.Image = (Bitmap)Resources.default_s_large;
                 }
             };
             // 开始异步下载
